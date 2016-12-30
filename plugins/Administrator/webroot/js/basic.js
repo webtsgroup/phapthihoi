@@ -46,7 +46,7 @@ function getFormData(form) {
         });
         break;
       case 'SELECT':
-        if($el.val() !== -1) {
+        if($el.val() !== -1 && $el.val() !== '') {
           _value = $el.val();
         }
         break;
@@ -67,142 +67,33 @@ function getFormData(form) {
   });
   return formData;
 }
-function user(url) {
-	var formData = getFormData('formUser');
-  console.log(formData);
-	if ($.isEmptyObject(formData.error)) {
-		$ajax(url, formData.data);
-	}
+
+function errorHandle(form, errors) {
+  $.each(errors, function(id, text) {
+    var span = '<span class="control-label">' + text + '</span>';
+    var elm = '#' + form + ' #' + id;
+    $(span).insertAfter(elm);
+    $(elm).parent().addClass('has-error');
+  });
 }
-function deleteImage(id, url)
-{
-	var check = $ajax(url, {}, true);
-	$('#image-'+id).remove();
-}
-function addNewHouse(form,url)
-{
-	var formData = validatorFormData(form);
-	if(!formData.error) {
-		if(!validateEmail(formData.data['contact_email']))
-		{
-			showNotify('Email invalid');
-			return;
-		}
-		$ajax(url, formData.data);
-	}
-}
-function addNewSlider(form,url)
-{
-	var formData = validatorFormData(form);
-	if(!formData.error) {
-		$ajax(url, formData.data);
-	}
-}
-function addNewPlace(form,url)
-{
-	var formData = validatorFormData(form);
-	if(!formData.error) {
-		$ajax(url, formData.data);
-	}
-}
-function addNewArticle(form,url)
-{
-	var formData = validatorFormData(form);
-	if(!formData.error) {
-		$ajax(url, formData.data);
-	}
-}
-function addNewAccount(url)
-{
-	var formData = validatorFormData('addAccount');
-	if(!formData.error) {
-		if(!validateEmail(formData.data['email']))
-		{
-			showNotify('Email invalid');
-			return;
-		}
-		$ajax(url, formData.data);
-	}
-}
-function updateField(model,id,field,value)
-{
-	var elm = $('#'+field);
-	if(elm.attr('rel') == 'date')
-	{
-		var arr = value.split("-");
-		var date = arr[1]+"/"+arr[0]+"/"+arr[2];
-		console.log(date);
-		date = new Date(date);
-		console.log(date);
-		value = date.getTime();
-		console.log(value);
-		var c = new Date();
-		c = c.getTime();
-		value = c - value;
-	}
-	$.ajax({
-		url  : '/ajaxs/updateField',
-		type : 'POST',
-		data : {
-			data : {model : model , id : id, field : field, value : value}
-		},
-		dataType : 'json',
-		success: function(data)
-		{
-			showNotify(data.message,true);
-		}
-	});
-}
-function changePass(url)
-{
-	var error = 0;
-	var arr = ['old_pass', 'pass','re_pass'];
-	var formData = {};
-	$.each(arr,function(index,elm){
-		var val = $('#'+elm).val();
-		if( val == '')
-		{
-			showNotify('Insert '+elm);
-			error++;
-		}
-		formData[elm] = val;
-	});
-	if(error == 0)	{
-		if($ajax(url, formData, false))
-		{
-			$.each(arr,function(index,elm){
-				$('#'+elm).val('');
-			});
-			showBoxChangePass();
-		}
-	}
-}
-function setModalAttr(title,html,btn)
-{
-	if(title != '')
-	{
+
+function setModalAttr(title,html,btn) {
+	if(title != '') {
 		$('.modal-title').text(title);
 	}
-	if(html != '')
-	{
+	if(html != '') {
 		$("#myModal #showResult").html(html);
 	}
-	if(btn != '')
-	{
+	if(btn != '') {
 		$(btn).insertAfter('#btnCancelModal');
 	}
 }
-function showBoxChangePass()
-{
-	$('.elm-hide').toggle();
-}
-function showNotify(text,hide)
-{
+
+function showNotify(text,hide) {
 	$("#showResult").show();
 	$("#showResult").html(text);
 	$("#myModal").modal();
-	if(hide == true)
-	{
+	if(hide) {
 		setTimeout(function(){$('#myModal').modal('hide')},1000);
 	}
 }
@@ -270,8 +161,7 @@ function login(form, url)
       		});
  }
  /*---------AJAX PROCESS GENERAL-------------*/
- function $ajax(url, data, sync)
- {
+ function $ajax(url, data, sync) {
 	 sync = typeof sync == 'undefined' ? true : sync;
 	 var success = false ;
 	 $.ajax({
@@ -298,6 +188,7 @@ function login(form, url)
 			}
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
+      success = false;
 			showNotify('Error');
     }
 	});

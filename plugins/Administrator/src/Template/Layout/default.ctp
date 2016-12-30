@@ -49,24 +49,25 @@
           'Administrator.jquery-2.1.1.js',
           'Administrator.bootstrap.min.js',
           'Administrator.plugins/metisMenu/jquery.metisMenu.js',
-          'Administrator.plugins/slimscroll/jquery.slimscroll.min.js',
-          'Administrator.basic.js'
+          'Administrator.plugins/slimscroll/jquery.slimscroll.min.js'
         ]) ?>
 
         <!-- Custom and plugin javascript -->
         <?= $this->Html->script([
           'Administrator.inspinia.js',
-          'Administrator.plugins/pace/pace.min.js'
+          'Administrator.plugins/pace/pace.min.js',
+          'Administrator.basic.js',
+          'Administrator.page.js'
         ]) ?>
         <div class="wrapper wrapper-content animated fadeInRight">
             <?= $this->fetch('content') ?>
         </div>
         <div class="footer">
             <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
+                Framework <strong>CakePHP</strong> 3.3.
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2015
+                <strong>Copyright</strong> &copy; 2016
             </div>
         </div>
     </div>

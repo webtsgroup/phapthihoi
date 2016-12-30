@@ -213,3 +213,5 @@ if (Configure::read('debug')) {
 Plugin::load('Migrations');
 
 Plugin::load('Administrator', ['bootstrap' => false, 'routes' => true]);
+
+Plugin::load('CakephpJqueryFileUpload');

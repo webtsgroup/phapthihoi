@@ -8225,3 +8225,38 @@ body.md-skin {
     margin: 0;
   }
 }
+.btn-submit::before,
+.btn-save::before,
+.btn-create::before,
+.btn-reset::before,
+.btn-edit::before {
+  font-family: "FontAwesome";
+  padding-right: 4px;
+}
+.btn-submit::before {
+  content: "\f00c";
+}
+.btn-save::before {
+  content: "\f0c7";
+}
+.btn-create::before {
+  content: "\f067";
+}
+.btn-reset::before {
+  content: "\f01e";
+}
+.btn-edit::before {
+  content: "\f040";
+}
+.btn-delete::before {
+  content: "\f014";
+}
+.btn-remove::before {
+  content: "\f014";
+}
+.btn-list::before {
+  content: "\f0cb";
+}
+.s-before-n-p::before {
+  padding: 0 !important;
+}

@@ -7,8 +7,7 @@ use Cake\Event\Event;
 use Cake\ORM\Table;
 use Cake\Routing\Router;
 
-class AppController extends BaseController
-{
+class AppController extends BaseController {
   public $ACCOUNT = 0;
   public $MODULE = 'Dashboards';
 	public $INDEX = [
@@ -76,8 +75,8 @@ class AppController extends BaseController
    */
   function getAllConfigs() {
 		$ACCOUNT = 0;
-		$this->loadModel('Config');
-		$this->systemConfigs = $this->Config->find('list', [
+		$this->loadModel('Configs');
+		$this->systemConfigs = $this->Configs->find('list', [
       'keyField'=> 'name',
       'valueField' => 'value'
     ])->toArray();

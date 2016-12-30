@@ -6,9 +6,9 @@
           <div class="col-md-12">
             <?php
             echo $this->Html->link(
-              __('Add new', true),
+              __('Create', true),
               ['controller' => 'users', 'action' => 'add'],
-              ['class' => 'btn btn-primary btn-add']
+              ['class' => 'btn btn-primary btn-create']
             ); ?>
           </div>
         </div>
