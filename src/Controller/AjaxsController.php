@@ -71,7 +71,13 @@ class AjaxsController extends AppController {
 		    'accept_file_types' => '/\.(jpe?g|png)$/i',
 		    'upload_dir' => WWW_ROOT . 'uploads' . DS . 'galleries' . DS,
 		    'upload_url' => '/uploads/galleries/',
-		    'print_response' => false
+		    'print_response' => false,
+				'image_versions' => array(
+					'thumbnail' => array(
+						'max_width' => 320,
+            'max_height' => 270
+					)
+				)
 			);
 			$uploaded = $this->JqueryFileUpload->upload($options);
 			$uploaded = json_decode(json_encode($uploaded), true);
@@ -92,6 +98,7 @@ class AjaxsController extends AppController {
 		echo json_encode($results);
 		exit;
 	}
+
 	public function deleteImage($id) {
 		$results = $this->defaultAjaxResult;
 		if(is_numeric($id)){
@@ -107,6 +114,7 @@ class AjaxsController extends AppController {
 		echo json_encode($results);
 		exit;
 	}
+
 	public function multipleUpload($id, $type = 'house') {
 		$this->layout = 'ajax';
 		$this->render(false);
