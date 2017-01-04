@@ -88,25 +88,32 @@ function setModalAttr(title,html,btn) {
 		$(btn).insertAfter('#btnCancelModal');
 	}
 }
+function showLoading(show) {
+  if (show === true) {
+    $('#loading').show();
+  } else {
+    $('#loading').hide();
+  }
+}
+function showNotify(text, hide) {
+	// $("#showResult").show();
+	// $("#showResult").html(text);
+	// $("#myModal").modal();
+	// if(hide) {
+	// 	setTimeout(function(){$('#myModal').modal('hide')},1000);
+	// }
+	toastr.info('Are you the 6 fingered man?');
+  //toastr.remove()
+}
+function alertMsg(text,cls) {
+	$("#js-show-result").attr('class','');
+	$("#js-show-result").addClass(cls);
+	$("#js-show-result").html(text);
+	$("#js-show-result").fadeIn();
+}
 
-function showNotify(text,hide) {
-	$("#showResult").show();
-	$("#showResult").html(text);
-	$("#myModal").modal();
-	if(hide) {
-		setTimeout(function(){$('#myModal').modal('hide')},1000);
-	}
-}
-function alertMsg(text,cls)
-{
-	$("#showResult").attr('class','');
-	$("#showResult").addClass(cls);
-	$("#showResult").html(text);
-	$("#showResult").fadeIn();
-}
-<!---login------------>
-function login(form, url)
-{
+/*-------------AUTHENTICATION---------------*/
+function login(form, url) {
 	var form = getFormData(form);
 	if(!form.data.username) {
 		alertMsg('Enter the Username', 'text-danger');
@@ -124,7 +131,7 @@ function login(form, url)
 		data: form.data,
 		dataType : 'json',
 		beforeSend : function() {
-			alertMsg('Loging...','text-info');
+			alertMsg('Loging...', 'text-info');
 		},
 		success : function (data) {
 			var cls = 'text-danger';
@@ -142,124 +149,123 @@ function login(form, url)
 			}
 		},
 		error: function (jqXHR, textStatus, errorThrown) {
-    	alertMsg('Error','text-danger');
+    	alertMsg('Error', 'text-danger');
     }
 	});
- }
-
- function logout()
-{
-    var data="logout=1";
-        $.ajax({
-     			type: "POST",
-     			data: data,
-     			cache: false,
-     			success: function (html) {
-					showNotify(html);
-					setTimeout(function() {location.reload(true);}, 5000);
-     			}
-      		});
- }
- /*---------AJAX PROCESS GENERAL-------------*/
- function $ajax(url, data, sync) {
-	 sync = typeof sync == 'undefined' ? true : sync;
-	 var success = false ;
-	 $.ajax({
-		url : url,
-		type : "POST",
-		data: data,
-		//data : '',
-		dataType : 'json',
-		async : sync,
-		beforeSend : function(){
-			showNotify('Sending...');
-		},
-		success : function (data) {
-			var cls = 'text-danger';
-			var _redirect = typeof (data.redirect) !== 'undefined' ? data.redirect : false;
-			var _msg = _redirect ? data.message + '<br /> Redirect to...' : data.message;
-			if(data.success) cls = 'text-success';
-			success = data.success ;
-			showNotify(_msg, true);
-			if(_redirect) {
-				setTimeout(function(){ window.location.assign(_redirect) },2500);
-			} else if(data.reload == true) {
-				setTimeout(function(){ location.reload(true); },1500);
-			}
-		},
-		error: function (jqXHR, textStatus, errorThrown) {
-      success = false;
-			showNotify('Error');
-    }
-	});
-	return success;
- }
- function checkNumber(e)
- {
-	if (window.event)//lấy giá trị ASCII kí tự mới nhập vào với trình duyệt IE
-	{
-		var value = window.event.keyCode;
-	}
-	else
-		var value=e.which;
-	if(value!=8)
-	{
-		if(value<48 || value>57)
-		{
-			showNotify('Only allow number')
-			return false;
-		}
-	}
- }
- function validateEmail(email) {
-    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    return re.test(email);
 }
 
+function logout() {
+  var data="logout=1";
+  $.ajax({
+			type: "POST",
+			data: data,
+			cache: false,
+			success: function (html) {
+			showNotify(html);
+			setTimeout(function() {
+        location.reload(true);
+      }, 1000);
+			}
+	});
+}
 
-function checkAll(name, parent, child)
-{
+/*---------AJAX PROCESS GENERAL-------------*/
+function $ajax(url, data, sync) {
+  sync = typeof sync == 'undefined' ? true : sync;
+  var success = false ;
+  $.ajax({
+    url : url,
+    type : "POST",
+    data: data,
+    //data : '',
+    dataType : 'json',
+    async : sync,
+    beforeSend : function(){
+      showLoading(true);
+    	showNotify('Sending...');
+    },
+    success : function (data) {
+    	var cls = 'text-danger';
+    	var _redirect = typeof (data.redirect) !== 'undefined' ? data.redirect : false;
+    	var _msg = _redirect ? data.message + '<br /> Redirect to...' : data.message;
+    	if(data.success) cls = 'text-success';
+    	success = data.success ;
+      showLoading(false);
+    	showNotify(_msg, true);
+    	if(_redirect) {
+    		setTimeout(function(){ window.location.assign(_redirect) },2500);
+    	} else if(data.reload == true) {
+    		setTimeout(function(){ location.reload(true); },1500);
+    	}
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      success = false;
+      showLoading(false);
+    	showNotify('Error');
+    }
+  });
+  return success;
+}
+
+/*-----------COMMON FUNCTION------------*/
+function checkNumber(e) {
+  if (window.event) {
+    //lấy giá trị ASCII kí tự mới nhập vào với trình duyệt IE
+  	var value = window.event.keyCode;
+  } else {
+    var value=e.which;
+  }
+  if(value!=8) {
+  	if(value < 48 || value > 57) {
+  		showNotify('Only allow number')
+  		return false;
+  	}
+  }
+}
+
+function validateEmail(email) {
+  var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  return re.test(email);
+}
+
+function checkAll(name, parent, child) {
 	var x=document.getElementsByName(name);
 	var i=0;
 	var count = x.length;
-	if(document.getElementById(parent).checked==true)
-		for (i=0;i<count;i++)
-		{
-			var check=child+'_'+i;
-			document.getElementById(check).checked=true;
-		}
-	else
-	{
-		for (i=0;i<count;i++)
-		{
-			var check=child+'_'+i;
-			document.getElementById(check).checked=false;
+	if (document.getElementById(parent).checked) {
+    for (i = 0; i < count; i++) {
+      var check = child + '_' + i;
+      document.getElementById(check).checked = true;
+    }
+  }
+	else {
+		for (i=0;i<count;i++) {
+			var check = child + '_' + i;
+			document.getElementById(check).checked = false;
 		}
 	}
 	return 0;
 }
 
-function checkOne(name, parent, child)
-{
-	var x=document.getElementsByName(name);
-	var i=0;
+function checkOne(name, parent, child) {
+	var x = document.getElementsByName(name);
+	var i = 0;
 	var count = x.length;
-	for (i=0;i<count;i++)
-	{
-		var check=child+'_'+i;
-		if(document.getElementById(check).checked==false)
-		{
-			document.getElementById(parent).checked=false
-		}
-		else
-		{
+	for (i = 0; i < count; i++) {
+		var check = child + '_' + i;
+		if (!document.getElementById(check).checked) {
+			document.getElementById(parent).checked = false
+		} else {
 			var tmp = 0;
-			for (i=0;i<count;i++)
-			{
-				var check=child+'_'+i;
-				if(document.getElementById(check).checked==true) tmp++;
+			for (i = 0; i < count; i++) {
+				var check = child + '_' + i;
+				if (document.getElementById(check).checked) {
+          tmp++;
+        }
 			}
-			if(tmp == count) document.getElementById(parent).checked=true;
+			if (tmp == count) {
+        document.getElementById(parent).checked = true;
+      }
 		}
 	}
 	return 0;

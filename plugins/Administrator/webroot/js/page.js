@@ -1,3 +1,14 @@
+function updateDataFromEditor() {
+	for ( instance in CKEDITOR.instances )
+			CKEDITOR.instances[instance].updateElement();
+}
+
+function editMe(field, value) {
+	//$(loading).insertAfter('#'+field);
+	var data = field+'/'+value;
+	$ajax('configs/editMe/', { value : value, field : field });
+}
+
 function user(url) {
 	var formData = getFormData('formUser');
 	if ($.isEmptyObject(formData.error)) {
@@ -17,6 +28,7 @@ function category(url) {
 }
 
 function work(url) {
+	updateDataFromEditor();
 	var formData = getFormData('formWork');
 	if ($.isEmptyObject(formData.error)) {
 		$ajax(url, formData.data);
@@ -26,6 +38,7 @@ function work(url) {
 }
 
 function page(url) {
+	updateDataFromEditor();
 	var formData = getFormData('formPage');
 	if ($.isEmptyObject(formData.error)) {
 		$ajax(url, formData.data);
@@ -78,10 +91,15 @@ function updateField(model, id, field, value) {
       value : value
     },
 		dataType : 'json',
-		success: function(data)
-		{
-			showNotify(data.message,true);
-		}
+		beforeSend : function(){
+      showLoading(true);
+		}, success: function(data) {
+			showLoading(false);
+			showNotify(data.message, true);
+		}, error: function (jqXHR, textStatus, errorThrown) {
+      showLoading(false);
+			showNotify('Error');
+    }
 	});
 }
 

@@ -1,248 +1,183 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Error\Debugger;
-use Cake\Network\Exception\NotFoundException;
-
-$this->layout = false;
-
-if (!Configure::read('debug')):
-    throw new NotFoundException('Please replace src/Template/Pages/home.ctp with your own version.');
-endif;
-
-$cakeDescription = 'CakePHP: the rapid development PHP framework';
+  use Cake\Routing\Router;
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
-</head>
-<body class="home">
-    <header>
-        <div class="header-image">
-            <?= $this->Html->image('http://cakephp.org/img/logo-cake.png') ?>
-            <h1>Get the Ovens Ready</h1>
-        </div>
-    </header>
-    <div id="content">
-        <div class="row">
-            <div class="columns large-12 ctp-warning checks">
-                Please be aware that this page will not be shown if you turn off debug mode unless you replace src/Template/Pages/home.ctp with your own version.
-            </div>
-            <?php Debugger::checkSecurityKeys(); ?>
-            <div id="url-rewriting-warning" class="columns large-12 url-rewriting checks">
-                <p class="problem">URL rewriting is not properly configured on your server.</p>
-                <p>
-                    1) <a target="_blank" href="http://book.cakephp.org/3.0/en/installation.html#url-rewriting">Help me configure it</a>
-                </p>
-                <p>
-                    2) <a target="_blank" href="http://book.cakephp.org/3.0/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
-                </p>
-            </div>
+<!-- content begin -->
+<div id="content" class="no-bottom no-top">
 
-            <div class="columns large-12 checks">
-                <h4>Environment</h4>
-                <?php if (version_compare(PHP_VERSION, '5.5.9', '>=')): ?>
-                    <p class="success">Your version of PHP is 5.5.9 or higher (detected <?= PHP_VERSION ?>).</p>
-                <?php else: ?>
-                    <p class="problem">Your version of PHP is too low. You need PHP 5.5.9 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</p>
-                <?php endif; ?>
+    <!-- revolution slider begin -->
+    <section id="section-slider" class="fullwidthbanner-container" aria-label="section-slider" style="max-height: none; overflow: visible; height: 782px;">
+        <div id="revolution-slider" class="revslider-initialised tp-simpleresponsive" style="height: 100%; max-height: none;">
+            <ul style="display: block; overflow: hidden; width: 100%; height: 100%; max-height: none;">
+                <li data-transition="parallaxtoright" data-slotamount="10" data-masterspeed="800" data-thumb="" style="width: 100%; height: 100%; overflow: hidden; visibility: visible; left: 0px; top: 0px; z-index: 18; opacity: 1; position: absolute;">
+                    <!--  BACKGROUND IMAGE -->
+                    <div class="slotholder" style="width:100%;height:100%;" data-duration="undefined" data-zoomstart="undefined" data-zoomend="undefined" data-rotationstart="undefined" data-rotationend="undefined" data-ease="undefined" data-bgpositionend="undefined" data-bgposition="undefined" data-kenburns="undefined" data-easeme="undefined" data-bgfit="undefined" data-bgfitend="undefined" data-owidth="undefined" data-oheight="undefined"><div class="tp-bgimg defaultimg" data-lazyload="undefined" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat" data-lazydone="undefined" src="img/slider/wide4.jpg" data-src="img/slider/wide4.jpg" style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url(&quot;img/slider/wide4.jpg&quot;); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 0;"></div><div class="tp-dottedoverlay "></div></div>
+                    <div class="tp-caption big-white sfb start" data-x="center" data-y="180" data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 0px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 6px; font-size: 16px; left: 607px; top: 321px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        <span class="id-color">Our Expertise For</span>
+                    </div>
 
-                <?php if (extension_loaded('mbstring')): ?>
-                    <p class="success">Your version of PHP has the mbstring extension loaded.</p>
-                <?php else: ?>
-                    <p class="problem">Your version of PHP does NOT have the mbstring extension loaded.</p>;
-                <?php endif; ?>
+                    <div class="tp-caption ultra-big-white sfb start" data-x="center" data-y="center" data-speed="800" data-start="500" data-easing="easeInOutExpo" data-endspeed="400" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 10px; font-size: 72px; left: 408px; top: 379.5px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        Interior Design
+                    </div>
 
-                <?php if (extension_loaded('openssl')): ?>
-                    <p class="success">Your version of PHP has the openssl extension loaded.</p>
-                <?php elseif (extension_loaded('mcrypt')): ?>
-                    <p class="success">Your version of PHP has the mcrypt extension loaded.</p>
-                <?php else: ?>
-                    <p class="problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</p>
-                <?php endif; ?>
+                    <div class="tp-caption text-center sfb start" data-x="center" data-y="290" data-speed="800" data-start="600" data-easing="easeInOutExpo" data-endspeed="450" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-size: 14px; left: 509px; top: 431px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        We are team based on Brookylin. Our expertise on Interior Design.
+                        <br>
+                        often including the exterior, of a room or building.
+                    </div>
 
-                <?php if (extension_loaded('intl')): ?>
-                    <p class="success">Your version of PHP has the intl extension loaded.</p>
-                <?php else: ?>
-                    <p class="problem">Your version of PHP does NOT have the intl extension loaded.</p>
-                <?php endif; ?>
-                <hr>
+                    <div class="tp-caption sfb start" data-x="center" data-y="375" data-speed="800" data-start="700" data-easing="easeInOutExpo" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-size: 14px; left: 616.5px; top: 516px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        <a href="<?=$urlSetting['about']['url']?>" class="btn-slider"><?=$urlSetting['about']['text']?></a>
+                    </div>
+                </li>
 
-                <h4>Filesystem</h4>
-                <?php if (is_writable(TMP)): ?>
-                    <p class="success">Your tmp directory is writable.</p>
-                <?php else: ?>
-                    <p class="problem">Your tmp directory is NOT writable.</p>
-                <?php endif; ?>
+                <li data-transition="parallaxtoright" data-slotamount="10" data-masterspeed="800" data-thumb="" style="width: 100%; height: 100%; overflow: hidden; visibility: visible; left: 0px; top: 0px; z-index: 20; opacity: 1; position: absolute;">
+                    <!--  BACKGROUND IMAGE -->
+                    <div class="slotholder" style="width:100%;height:100%;" data-duration="undefined" data-zoomstart="undefined" data-zoomend="undefined" data-rotationstart="undefined" data-rotationend="undefined" data-ease="undefined" data-bgpositionend="undefined" data-bgposition="undefined" data-kenburns="undefined" data-easeme="undefined" data-bgfit="undefined" data-bgfitend="undefined" data-owidth="undefined" data-oheight="undefined"><div class="tp-bgimg defaultimg" data-lazyload="undefined" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat" data-lazydone="undefined" src="img/slider/wide5.jpg" data-src="img/slider/wide5.jpg" style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url(&quot;img/slider/wide5.jpg&quot;); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1;"></div><div class="tp-dottedoverlay "></div></div>
+                    <div class="tp-caption big-white sfb start" data-x="center" data-y="180" data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 0px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 6px; font-size: 16px; left: 609.5px; top: 321px; visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.0025, 0, 0, 0, 1);">
+                        <span class="id-color">Featured Project</span>
+                    </div>
 
-                <?php if (is_writable(LOGS)): ?>
-                    <p class="success">Your logs directory is writable.</p>
-                <?php else: ?>
-                    <p class="problem">Your logs directory is NOT writable.</p>
-                <?php endif; ?>
+                    <div class="tp-caption ultra-big-white sfb start" data-x="center" data-y="center" data-speed="800" data-start="500" data-easing="easeInOutExpo" data-endspeed="400" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 10px; font-size: 72px; left: 378px; top: 379.5px; visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.0025, 0, 0, 0, 1);">
+                        Elegant Interior
+                    </div>
 
-                <?php $settings = Cache::config('_cake_core_'); ?>
-                <?php if (!empty($settings)): ?>
-                    <p class="success">The <em><?= $settings['className'] ?>Engine</em> is being used for core caching. To change the config edit config/app.php</p>
-                <?php else: ?>
-                    <p class="problem">Your cache is NOT working. Please check the settings in config/app.php</p>
-                <?php endif; ?>
+                    <div class="tp-caption text-center sfb start" data-x="center" data-y="290" data-speed="800" data-start="600" data-easing="easeInOutExpo" data-endspeed="450" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-size: 14px; left: 509px; top: 431px; visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.0025, 0, 0, 0, 1);">
+                        We are team based on Brookylin. Our expertise on Interior Design.
+                        <br>
+                        often including the exterior, of a room or building.
+                    </div>
 
-                <hr>
-                <h4>Database</h4>
-                <?php
-                    try {
-                        $connection = ConnectionManager::get('default');
-                        $connected = $connection->connect();
-                    } catch (Exception $connectionError) {
-                        $connected = false;
-                        $errorMsg = $connectionError->getMessage();
-                        if (method_exists($connectionError, 'getAttributes')):
-                            $attributes = $connectionError->getAttributes();
-                            if (isset($errorMsg['message'])):
-                                $errorMsg .= '<br />' . $attributes['message'];
-                            endif;
-                        endif;
-                    }
+                    <div class="tp-caption sfb start" data-x="center" data-y="375" data-speed="800" data-start="700" data-easing="easeInOutExpo" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-size: 14px; left: 616.5px; top: 516px; visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.0025, 0, 0, 0, 1);">
+                        <a href="<?=$urlSetting['about']['url']?>" class="btn-slider"><?=$urlSetting['about']['text']?></a>
+                    </div>
+                </li>
+
+                <li data-transition="parallaxtoright" data-slotamount="10" data-masterspeed="800" data-thumb="" style="width: 100%; height: 100%; overflow: hidden; visibility: visible; left: 0px; top: 0px; z-index: 18; opacity: 1; position: absolute;">
+                    <!--  BACKGROUND IMAGE -->
+                    <div class="slotholder" style="width:100%;height:100%;" data-duration="undefined" data-zoomstart="undefined" data-zoomend="undefined" data-rotationstart="undefined" data-rotationend="undefined" data-ease="undefined" data-bgpositionend="undefined" data-bgposition="undefined" data-kenburns="undefined" data-easeme="undefined" data-bgfit="undefined" data-bgfitend="undefined" data-owidth="undefined" data-oheight="undefined"><div class="tp-bgimg defaultimg" data-lazyload="undefined" data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat" data-lazydone="undefined" src="img/slider/wide6.jpg" data-src="img/slider/wide6.jpg" style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url(&quot;img/slider/wide6.jpg&quot;); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 0;"></div><div class="tp-dottedoverlay "></div></div>
+                    <div class="tp-caption big-white sfb start" data-x="center" data-y="180" data-speed="800" data-start="400" data-easing="easeInOutExpo" data-endspeed="450" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 0px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 6px; font-size: 16px; left: 533px; top: 321px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        <span class="id-color">Interior Remodeling To Makes</span>
+                    </div>
+
+                    <div class="tp-caption ultra-big-white sfb start" data-x="center" data-y="center" data-speed="800" data-start="500" data-easing="easeInOutExpo" data-endspeed="400" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 10px; font-size: 72px; left: 390.5px; top: 379.5px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        Your Life Easier
+                    </div>
+
+                    <div class="tp-caption text-center sfb start" data-x="center" data-y="290" data-speed="800" data-start="600" data-easing="easeInOutExpo" data-endspeed="450" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-size: 14px; left: 509px; top: 431px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        We are team based on Brookylin. Our expertise on Interior Design.
+                        <br>
+                        often including the exterior, of a room or building.
+                    </div>
+
+                    <div class="tp-caption sfb start" data-x="center" data-y="375" data-speed="800" data-start="700" data-easing="easeInOutExpo" style="transition: all 0s ease 0s; min-height: 0px; min-width: 0px; line-height: 23px; border-width: 0px; margin: 0px; padding: 0px; letter-spacing: 0px; font-size: 14px; left: 616.5px; top: 516px; visibility: visible; opacity: 0; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, 50, 0, 1);">
+                        <a href="<?=$urlSetting['about']['url']?>" class="btn-slider"><?=$urlSetting['about']['text']?></a>
+                    </div>
+                </li>
+
+            </ul>
+        <div class="tp-loader spinner0" style="visibility: hidden; opacity: 0;"><div class="dot1"></div><div class="dot2"></div><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div><div class="tp-bannertimer" style="visibility: hidden; width: 34.9465%;"></div></div>
+    <div style="position: absolute; top: 391px; margin-top: -20px; left: 20px;" class="tp-leftarrow tparrows default hidearrows"></div><div style="position: absolute; top: 391px; margin-top: -20px; right: 20px;" class="tp-rightarrow tparrows default hidearrows"></div></section>
+    <!-- revolution slider close -->
+
+    <!-- section begin -->
+    <section id="section-about" class="no-top no-bottom">
+        <div class="container-fluid">
+            <div class="row-fluid display-table" style="background: #000">
+              <?php foreach ($activities as $ind => $activity) {
+                if ($ind === 2) {
+                  $type = 'construction';
+                } else {
+                  $type = 'design';
+                }
                 ?>
-                <?php if ($connected): ?>
-                    <p class="success">CakePHP is able to connect to the database.</p>
-                <?php else: ?>
-                    <p class="problem">CakePHP is NOT able to connect to the database.<br /><br /><?= $errorMsg ?></p>
-                <?php endif; ?>
+                <div class="col-md-4 text-middle text-light wow fadeInRight animated" data-wow-delay="0" data-bgimage="url(images/services/p2_a.jpg)" style="background-image: url(&quot;images/services/p2_a.jpg&quot;); visibility: visible; animation-name: fadeInRight;">
+                  <div class="padding40 overlay70">
+                    <h3><?=$activity['title']?></h3>
+                    <p><?=$activity['content']?></p>
 
-                <hr>
-                <h4>DebugKit</h4>
-                <?php if (Plugin::loaded('DebugKit')): ?>
-                    <p class="success">DebugKit is loaded.</p>
-                <?php else: ?>
-                    <p class="problem">DebugKit is NOT loaded. You need to either install pdo_sqlite, or define the "debug_kit" connection name.</p>
-                <?php endif; ?>
+                    <a href="<?=Router::url(['controller' => 'Works','action' => 'index', $type])?>" class="btn-line btn-fullwidth"><?=__('Read More')?></a>
+                  </div>
+                </div>
+                <?php
+              } ?>
+
             </div>
         </div>
+    </section>
+    <!-- section close -->
 
-        <div class="row">
-            <div class="columns large-6">
-                <h3>Editing this Page</h3>
-                <ul>
-                    <li>To change the content of this page, edit: src/Template/Pages/home.ctp.</li>
-                    <li>You can also add some CSS styles for your pages at: webroot/css/.</li>
-                </ul>
+    <!-- section begin -->
+    <section id="section-portfolio-2" class="no-top no-bottom" data-bgcolor="#252525" aria-label="section-portfolio" style="background-color: rgb(37, 37, 37);">
+        <div class="container">
+
+            <div class="spacer-single"></div>
+
+            <!-- portfolio filter begin -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <ul id="filters" class="wow fadeInUp animated" data-wow-delay="0s" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;">
+                        <li><a href="#" data-filter="*" class="selected"><?=__('All categories', true)?></a></li>
+                        <li><a href="#" data-filter=".design" class=""><?=__('Design', true)?></a></li>
+                        <li><a href="#" data-filter=".construction"><?=__('Construction', true)?></a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="columns large-6">
-                <h3>Getting Started</h3>
-                <ul>
-                    <li><a target="_blank" href="http://book.cakephp.org/3.0/en/">CakePHP 3.0 Docs</a></li>
-                    <li><a target="_blank" href="http://book.cakephp.org/3.0/en/tutorials-and-examples/bookmarks/intro.html">The 15 min Bookmarker Tutorial</a></li>
-                    <li><a target="_blank" href="http://book.cakephp.org/3.0/en/tutorials-and-examples/blog/blog.html">The 15 min Blog Tutorial</a></li>
-                </ul>
-                <p>
-            </div>
+            <!-- portfolio filter close -->
+
         </div>
-        <hr/>
 
-        <div class="row">
-            <div class="columns large-12">
-                <h3 class="">More about Cake</h3>
-                <p>
-                    CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Front Controller and MVC.
-                </p>
-                <p>
-                    Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
-                </p>
+        <div id="gallery" class="gallery full-gallery de-gallery pf_full_width wow fadeInUp isotope animated" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp; position: relative; overflow: hidden; height: 478px;">
 
-                <h3>Help and Bug Reports</h3>
-                <ul>
-                    <li>
-                        <a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-                        <ul><li>Live chat about CakePHP</li></ul>
-                    </li>
-                    <li>
-                        <a href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                        <ul><li>CakePHP issues and pull requests</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://discourse.cakephp.org/">CakePHP Forum</a>
-                        <ul><li>CakePHP official discussion forum</li></ul>
-                    </li>
-                    <li>
-                        <a href="https://groups.google.com/group/cake-php">CakePHP Google Group</a>
-                        <ul><li>Community mailing list</li></ul>
-                    </li>
-                </ul>
-
-                <h3>Docs and Downloads</h3>
-                <ul>
-                    <li>
-                        <a href="http://api.cakephp.org/3.0/">CakePHP API</a>
-                        <ul><li>Quick Reference</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://book.cakephp.org/3.0/en/">CakePHP Documentation</a>
-                        <ul><li>Your Rapid Development Cookbook</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://bakery.cakephp.org">The Bakery</a>
-                        <ul><li>Everything CakePHP</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://plugins.cakephp.org">CakePHP plugins repo</a>
-                        <ul><li>A comprehensive list of all CakePHP plugins created by the community</li></ul>
-                    </li>
-                    <li>
-                        <a href="https://github.com/cakephp/">CakePHP Code</a>
-                        <ul><li>For the Development of CakePHP Git repository, Downloads</li></ul>
-                    </li>
-                    <li>
-                        <a href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>
-                        <ul><li>A curated list of amazingly awesome CakePHP plugins, resources and shiny things.</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://www.cakephp.org">CakePHP</a>
-                        <ul><li>The Rapid Development Framework</li></ul>
-                    </li>
-                </ul>
-
-                <h3>Training and Certification</h3>
-                <ul>
-                    <li>
-                        <a href="http://cakefoundation.org/">Cake Software Foundation</a>
-                        <ul><li>Promoting development related to CakePHP</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://training.cakephp.org/">CakePHP Training</a>
-                        <ul><li>Learn to use the CakePHP framework</li></ul>
-                    </li>
-                    <li>
-                        <a href="http://certification.cakephp.org/">CakePHP Certification</a>
-                        <ul><li>Become a certified CakePHP developer</li></ul>
-                    </li>
-                </ul>
+          <?php foreach ($designResults as $ind => $item) {
+            ?>
+            <!-- gallery item -->
+            <div class="item design isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">
+                <div class="picframe" style="height: 239px;">
+                    <a href="<?=Router::url(['controller' => 'Works','action' => 'detail', $item['id']])?>">
+                        <span class="overlay" style="opacity: 0; width: 359px; height: 239px;">
+                            <span class="pf_text" style="margin-top: 102.5px;">
+                                <span class="project-name"><?=$item['name']?></span>
+                            </span>
+                        </span>
+                    </a>
+                    <img src="<?=$galleryPathThumb . $item['avatar']['file']?>" alt="<?=$item['name']?>" style="width: 100%; height: auto; margin-left: 0px; margin-top: 0px;">
+                </div>
             </div>
+            <!-- close gallery item -->
+            <?php
+          } ?>
+
+          <?php foreach ($constructionResults as $ind => $item) {
+            ?>
+            <!-- gallery item -->
+            <div class="item construction isotope-item" style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px);">
+                <div class="picframe" style="height: 239px;">
+                    <a href="<?=Router::url(['controller' => 'Works','action' => 'detail', $item['id']])?>">
+                        <span class="overlay" style="opacity: 0; width: 359px; height: 239px;">
+                            <span class="pf_text" style="margin-top: 102.5px;">
+                                <span class="project-name"><?=$item['name']?></span>
+                            </span>
+                        </span>
+                    </a>
+                    <img src="<?=$galleryPathThumb . $item['avatar']['file']?>" alt="<?=$item['name']?>" style="width: 100%; height: auto; margin-left: 0px; margin-top: 0px;">
+                </div>
+            </div>
+            <!-- close gallery item -->
+            <?php
+          } ?>
+
         </div>
-    </div>
-</body>
-</html>
+
+        <div id="loader-area">
+            <div class="project-load"></div>
+        </div>
+    </section>
+    <!-- section close -->
+
+    <!-- section begin -->
+    <section id="view-all-projects" class="call-to-action bg-color text-center padding40" data-speed="5" data-type="background" aria-label="view-all-projects" style="background-position: 50% -600.8px;">
+        <a href="http://www.themenesia.com/themeforest/archi/contact.html" class="btn btn-line-black btn-big wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"><?=__('Contact us')?></a>
+    </section>
+    <!-- logo carousel section close -->
+
+</div>

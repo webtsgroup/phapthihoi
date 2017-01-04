@@ -10,13 +10,14 @@
         "mobiledetect/mobiledetectlib": "2.*",
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
-        "hashmode/cakephp-jquery-file-upload": "~1.0"
+        "hashmode/cakephp-jquery-file-upload": "~1.0",
+        "akkaweb/cakephp-ckeditor": "dev-master"
     },
     "require-dev": {
         "psy/psysh": "@stable",
         "cakephp/debug_kit": "~3.2",
         "cakephp/bake": "~1.1",
-        "Datatables/Datatables": "dev-master"
+        "Datatables/Datatables": "1.10.10"
     },
     "suggest": {
         "phpunit/phpunit": "Allows automated tests to be run without system-wide install.",

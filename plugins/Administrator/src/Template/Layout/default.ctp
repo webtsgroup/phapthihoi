@@ -6,6 +6,15 @@
 <html>
 <?= $this->element('head') ?>
 <body>
+<div id="loading">
+  <div id="loading-content">
+    <?php
+    echo $this->Html->image("loading.gif", array(
+      "alt" => "Loading..."
+    ));
+     ?>
+  </div>
+</div>
 <div id="wrapper">
   <?= $this->element('sidebar'); ?>
     <div id="page-wrapper" class="gray-bg">
@@ -55,10 +64,21 @@
         <!-- Custom and plugin javascript -->
         <?= $this->Html->script([
           'Administrator.inspinia.js',
-          'Administrator.plugins/pace/pace.min.js',
+          'Administrator.plugins/pace/pace.min.js'
+        ]) ?>
+
+        <!-- Toastr plugin javascript -->
+        <?= $this->Html->script([
+          'Administrator.plugins/toastr/toastr.min.js'
+        ]) ?>
+        <?php echo $this->CKEditor->loadJs(); ?>
+
+        <!-- basic CMS javascript -->
+        <?= $this->Html->script([
           'Administrator.basic.js',
           'Administrator.page.js'
         ]) ?>
+
         <div class="wrapper wrapper-content animated fadeInRight">
             <?= $this->fetch('content') ?>
         </div>

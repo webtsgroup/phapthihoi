@@ -1,0 +1,8 @@
+.cat-child-item {
+  margin-bottom: 0 !important;
+  padding-bottom: 4px !important;
+  padding-left: 0px !important;
+}
+.cat-child-item .fa {
+  padding-right: 8px;
+}

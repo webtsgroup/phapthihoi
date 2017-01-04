@@ -1,57 +1,123 @@
 <?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Core\Plugin;
+use Cake\Datasource\ConnectionManager;
+//use Cake\Error\Debugger;
+use Cake\Network\Exception\NotFoundException;
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$this->layout = false;
+
+$cakeDescription = 'CakePHP: the rapid development PHP framework';
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <?= $this->Html->charset() ?>
+<!-- saved from url=(0063)http://www.themenesia.com/themeforest/archi/index-slider-2.html -->
+<html lang="en" class="csstransforms csstransforms3d csstransitions">
+    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title><?=$systemConfigs['seo_title']?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
-    </title>
-    <?= $this->Html->meta('icon') ?>
+    <meta name="keywords" content="<?=$systemConfigs['seo_keyword']?>">
+    <meta name="description" content="<?=$systemConfigs['seo_description']?>">
+    <meta name="author" content="">
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!--[if lt IE 9]>
+	<script src="js/html5shiv') ?>
+	<![endif]-->
 
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+
+    <!-- CSS Files
+    ================================================== -->
+    <?= $this->Html->css('bootstrap') ?>
+    <?= $this->Html->css('jpreloader') ?>
+    <?= $this->Html->css('animate') ?>
+    <?= $this->Html->css('plugin') ?>
+    <?= $this->Html->css('owl.carousel') ?>
+    <?= $this->Html->css('owl.theme') ?>
+    <?= $this->Html->css('owl.transitions') ?>
+    <?= $this->Html->css('magnific-popup') ?>
+    <?= $this->Html->css('style') ?>
+    <?= $this->Html->css('demo') ?>
+
+    <!-- custom background -->
+    <?= $this->Html->css('bg') ?>
+
+    <!-- color scheme -->
+    <?= $this->Html->css('lime') ?>
+
+    <!-- load fonts -->
+    <?= $this->Html->css('font-awesome') ?>
+    <?= $this->Html->css('style(1)') ?>
+    <?= $this->Html->css('custom') ?>
+
+    <!-- revolution slider -->
+    <?= $this->Html->css('settings') ?>
+    <?= $this->Html->css('rev-settings') ?>
+
+    <!-- Javascript Files
+    ================================================== -->
+    <?= $this->Html->script('jquery.min') ?>
+    <?= $this->Html->script('jpreLoader') ?>
+    <?= $this->Html->script('bootstrap.min') ?>
+    <?= $this->Html->script('jquery.isotope.min') ?>
+    <?= $this->Html->script('easing') ?>
+    <?= $this->Html->script('jquery.flexslider-min') ?>
+    <?= $this->Html->script('jquery.scrollto') ?>
+    <?= $this->Html->script('owl.carousel') ?>
+    <?= $this->Html->script('jquery.countTo') ?>
+    <?= $this->Html->script('classie') ?>
+    <?= $this->Html->script('video.resize') ?>
+    <?= $this->Html->script('validation') ?>
+    <?= $this->Html->script('wow.min') ?>
+    <?= $this->Html->script('jquery.magnific-popup.min') ?>
+    <?= $this->Html->script('enquire.min') ?>
+
 </head>
-<body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+
+<body id="homepage" style="display: block;">
+
+    <div id="wrapper">
+
+        <!-- header begin -->
+        <header class="transparent clone smaller">
+            
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <!-- logo begin -->
+                  <div id="logo">
+                    <!-- <a href="/">
+                      <img class="logo" src="./Archi - Responsive Interior Design Template home_files/logo.png" alt="">
+                    </a> -->
+                    <h1 class="m-t"><span class="id-color">A</span>SIDEC</h1>
+                  </div>
+                  <!-- logo close -->
+
+                  <!-- small button begin -->
+                  <span id="menu-btn"></span>
+                  <!-- small button close -->
+
+  				        <!-- mainmenu begin -->
+                  <?=$this->element('menu')?>
+                  <!-- mainmenu close -->
+                </div>
+              </div>
+            </div>
+        </header>
+        <!-- header close -->
+
+        <?=$this->fetch('content')?>
+
+        <!-- footer begin -->
+        <?=$this->element('footer')?>
+        <!-- footer close -->
     </div>
-    <footer>
-    </footer>
-</body>
-</html>
+
+    <?= $this->Html->script('designesia') ?>
+    <?= $this->Html->script('demo') ?>
+
+    <!-- SLIDER REVOLUTION SCRIPTS  -->
+    <?= $this->Html->script('jquery.themepunch.plugins.min') ?>
+    <?= $this->Html->script('jquery.themepunch.revolution.min') ?>
+</body></html>

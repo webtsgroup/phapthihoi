@@ -9,4 +9,9 @@
       'Administrator.animate.css',
       'Administrator.style.css'
     ]) ?>
+
+    <?= $this->Html->css([
+      'Administrator.plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css',
+      'Administrator.plugins/toastr/toastr.min.css'
+    ]) ?>
 </head>

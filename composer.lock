@@ -4,9 +4,39 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d924ab2a6d8646d7282c67db0a1fd545",
-    "content-hash": "50572fb384caac557b2aebc8e1612856",
+    "hash": "5978ab6c599474aa1792358ecc1a7767",
+    "content-hash": "8e8b6bc827be9bdf181caf603ecf410e",
     "packages": [
+        {
+            "name": "akkaweb/cakephp-ckeditor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akkaweb/AKKA-CakePHP-CKEditor-Plugin.git",
+                "reference": "d495479dd31714afb6a6c6baafe552f5425de4fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akkaweb/AKKA-CakePHP-CKEditor-Plugin/zipball/d495479dd31714afb6a6c6baafe552f5425de4fa",
+                "reference": "d495479dd31714afb6a6c6baafe552f5425de4fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "AkkaCKEditor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "AkkaCKEditor plugin for CakePHP",
+            "time": "2016-01-05 23:28:20"
+        },
         {
             "name": "aura/installer-default",
             "version": "1.0.0",
@@ -178,16 +208,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.3.10",
+            "version": "3.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "135dd3b7e2dcd09a887f472ceb6bdee3fa39ada6"
+                "reference": "e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/135dd3b7e2dcd09a887f472ceb6bdee3fa39ada6",
-                "reference": "135dd3b7e2dcd09a887f472ceb6bdee3fa39ada6",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d",
+                "reference": "e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d",
                 "shasum": ""
             },
             "require": {
@@ -207,6 +237,7 @@
                 "cakephp/datasource": "self.version",
                 "cakephp/event": "self.version",
                 "cakephp/filesystem": "self.version",
+                "cakephp/form": "self.version",
                 "cakephp/i18n": "self.version",
                 "cakephp/log": "self.version",
                 "cakephp/orm": "self.version",
@@ -247,7 +278,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-12-12 03:46:25"
+            "time": "2016-12-27 21:17:03"
         },
         {
             "name": "cakephp/chronos",
@@ -1040,16 +1071,16 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "1.2.9",
+            "version": "1.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "e0bf5c06712e21b20e9503e3d04b1cb8011499e6"
+                "reference": "5a76999b2379895a1581912500673da9c112429f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/e0bf5c06712e21b20e9503e3d04b1cb8011499e6",
-                "reference": "e0bf5c06712e21b20e9503e3d04b1cb8011499e6",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/5a76999b2379895a1581912500673da9c112429f",
+                "reference": "5a76999b2379895a1581912500673da9c112429f",
                 "shasum": ""
             },
             "require": {
@@ -1083,7 +1114,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2016-12-20 01:46:26"
+            "time": "2016-12-26 04:29:56"
         },
         {
             "name": "cakephp/debug_kit",
@@ -1144,16 +1175,16 @@
         },
         {
             "name": "datatables/datatables",
-            "version": "dev-master",
+            "version": "1.10.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/DataTables/DataTables.git",
-                "reference": "403128c42f7b263a0563e862decbe69734b834e8"
+                "reference": "e2456455445801ec6bcd2467247fa2e030ab8b4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DataTables/DataTables/zipball/403128c42f7b263a0563e862decbe69734b834e8",
-                "reference": "403128c42f7b263a0563e862decbe69734b834e8",
+                "url": "https://api.github.com/repos/DataTables/DataTables/zipball/e2456455445801ec6bcd2467247fa2e030ab8b4a",
+                "reference": "e2456455445801ec6bcd2467247fa2e030ab8b4a",
                 "shasum": ""
             },
             "type": "library",
@@ -1163,7 +1194,7 @@
             ],
             "description": "DataTables is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, which will add advanced interaction controls to any HTML table.",
             "homepage": "http://www.datatables.net/",
-            "time": "2016-12-06 19:40:44"
+            "time": "2015-11-06 15:34:24"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1526,8 +1557,8 @@
     "aliases": [],
     "minimum-stability": "beta",
     "stability-flags": {
-        "psy/psysh": 0,
-        "datatables/datatables": 20
+        "akkaweb/cakephp-ckeditor": 20,
+        "psy/psysh": 0
     },
     "prefer-stable": true,
     "prefer-lowest": false,

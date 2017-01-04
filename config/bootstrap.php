@@ -215,3 +215,5 @@ Plugin::load('Migrations');
 Plugin::load('Administrator', ['bootstrap' => false, 'routes' => true]);
 
 Plugin::load('CakephpJqueryFileUpload');
+
+Plugin::load('AkkaCKEditor', ['bootstrap' => false, 'routes' => true]);

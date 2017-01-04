@@ -13,5 +13,14 @@ class WorksTable extends Table
       'foreignKey' => 'reference_id',
       'conditions' => ['type' => 'work']
     ]);
+    $this->hasOne('Avatar', [
+      'className' => 'Galleries',
+      'foreignKey' => 'reference_id',
+      'strategy' => 'select',
+      'conditions' => function ($e, $query) {
+        $query->order(['Avatar.id' => 'ASC']);
+        return [];
+      }
+    ]);
   }
 }

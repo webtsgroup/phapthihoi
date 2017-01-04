@@ -11,7 +11,7 @@
             <?php
             echo $this->Html->link(
               __('Create', true),
-              ['controller' => $this->request->params['controller'], 'action' => 'add'],
+              ['controller' => $this->request->params['controller'], 'action' => 'add', $cat],
               ['class' => 'btn btn-white btn-create']
             ); ?>
           </div>
@@ -51,10 +51,10 @@
   </div>
 </div>
 <?= $this->Html->css([
-  '/plugins/datatables/datatables/media/css/dataTables.bootstrap.min.css'
+  'Administrator.plugins/dataTables/dataTables.min.css'
 ]) ?>
 <?= $this->Html->script([
-  '/plugins/datatables/datatables/media/js/jquery.dataTables.min.js'
+  'Administrator.plugins/dataTables/datatables.min.js'
 ]) ?>
 <script>
 $(document).ready(function(){

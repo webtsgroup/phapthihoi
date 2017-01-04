@@ -15,6 +15,10 @@ class AppController extends BaseController {
     'link' => ''
   ];
 	public $SUB = '';
+  public $helpers = ['AkkaCKEditor.CKEditor' => [
+    'version' => '4.4.7', // Default Option
+    'distribution' => 'standard' // Default Option / Other options => 'basic', 'standard', 'standard-all', 'full-all'
+  ]];
   public function initialize()
   {
     $this->loadComponent('Flash');

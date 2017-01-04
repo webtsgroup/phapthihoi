@@ -6,13 +6,13 @@
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
-              <h1 class="logo-name">IMS</h1>
+              <h1 class="logo-name">CMS</h1>
             </div>
             <h3>Welcome to Administrator</h3>
             <form class="form-login" id="loginForm" >
   		        <div class="login-wrap">
                 <div class="form-group input-group">
-                  <div id="showResult">Content</div>
+                  <div id="js-show-result"></div>
                 </div>
                 <div class="form-group input-group">
                   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -29,7 +29,7 @@
                 </div>
   		        </div>
   		      </form>
-            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
+            <p class="m-t"> <small>CMS we app framework base on CakePHP 3.x &copy; 2016</small> </p>
         </div>
     </div>
     <!-- Mainly scripts -->

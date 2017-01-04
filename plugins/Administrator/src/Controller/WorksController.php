@@ -22,19 +22,25 @@ class WorksController extends AppController {
 		$this->loadModel('Works');
 	}
 
-	public function index() {
-		$results = $this->Works->find('all')->toArray();
-		$this->set(compact('results'));
+	public function index($cat = null) {
+		if ($cat === null) {
+			$results = $this->Works->find('all')->toArray();
+		} else {
+			$results = $this->Works->find('all')->where(['category_id'=> $cat])->toArray();
+		}
+		$this->set(compact('results', 'cat'));
 	}
 
-	public function add() {
+	public function add($cat = null) {
 		if(!empty($this->request->data) && $this->request->is('ajax')) {
 			$this->_save($this->request->data);
 		}
 		$this->_getMetadata();
 		$result = [];
+		if ($cat !== null) {
+			$result['category_id'] = $cat;
+		}
 		$result['galleries'] = [];
-		$result['galleries_str'] = '';
 		$this->set(compact('result'));
 		$this->render('form');
 	}
@@ -82,7 +88,7 @@ class WorksController extends AppController {
 					'success' => true,
 					'data' => $saveData,
 					'message' => __('Data saved'),
-					//'redirect' => Router::url(['controller' => 'works', 'action' => 'index'])
+					'redirect' => Router::url(['controller' => 'works', 'action' => 'index', $saveData['category_id']])
 				);
 			}	else {
 				$result['message'] = __('Data not save');

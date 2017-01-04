@@ -16,6 +16,8 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\Routing\Router;
+use Cake\Utility\Hash;
 
 /**
  * Application Controller
@@ -44,6 +46,65 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
     }
+
+    function beforeFilter(Event $event) {
+      $urlSetting = [
+        'about' => [
+          'text' => __('About us'),
+          'url' => Router::url(['controller' => 'pages', 'action' => 'about'])
+        ],
+        'contact' => [
+          'text' => __('Contact'),
+          'url' => Router::url(['controller' => 'pages', 'action' => 'contact'])
+        ]
+      ];
+      $this->set('urlSetting', $urlSetting);
+      $this->getAllConfigs();
+      $this->_getMetadata();
+    }
+
+    private function _getMetadata() {
+      $this->loadModel('Modules');
+      $workModulesQuery = $this->Modules->find('all')->where([
+        'type' => 'work',
+        'active' => 1
+      ])->toArray();
+      $workModules = Hash::combine($workModulesQuery, '{n}.alias', '{n}');
+      $this->loadModel('Categories');
+      $workQuery = $this->Categories->find('threaded')
+      ->where(['display' => 1])
+      ->toArray();
+      $workCategories = Hash::combine($workQuery, '{n}.id', '{n}', '{n}.module_id');
+      $galleryPath = '/uploads/galleries/';
+      $galleryPathThumb = '/uploads/galleries/thumbnail/';
+      $this->loadModel('Pages');
+      //record for work
+      $query = $this->Pages
+      ->find()
+      ->where(['display' => 1, 'alias' => 'activity-summary']);
+      $activity = $query->first();
+      $this->set(compact('activity', 'workCategories', 'workModules', 'galleryPath', 'galleryPathThumb'));
+    }
+
+    /**
+     *
+     */
+    function getAllConfigs() {
+  		$ACCOUNT = 0;
+  		$this->loadModel('Configs');
+  		$this->systemConfigs = $this->Configs->find('list', [
+        'keyField'=> 'name',
+        'valueField' => 'value'
+      ])->toArray();
+  		$this->set('systemConfigs', $this->systemConfigs);
+  	}
+
+    /**
+     *
+     */
+    function getSystemConfig($name) {
+  		return isset($this->systemConfigs[$name]) ? $this->systemConfigs[$name] : null;
+  	}
 
     /**
      * Before render callback.

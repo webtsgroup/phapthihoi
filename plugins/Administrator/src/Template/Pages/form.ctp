@@ -61,7 +61,7 @@
               'id' => 'alias',
               'type' => 'text',
               'data-required' => true,
-							'readonly' => &$result['id'],
+							'readonly' => isset($result['id']) ? 'readonly' : '',
               'title' => __('Enter the Alias'),
               'div' => false,
               'label' => false,
@@ -142,3 +142,4 @@
     </div>
   </div>
 </div>
+<?php echo $this->CKEditor->replace('content'); ?>
