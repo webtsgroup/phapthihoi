@@ -8229,7 +8229,10 @@ body.md-skin {
 .btn-save::before,
 .btn-create::before,
 .btn-reset::before,
-.btn-edit::before {
+.btn-edit::before,
+.btn-delete::before,
+.btn-remove::before,
+.btn-list::before {
   font-family: "FontAwesome";
   padding-right: 4px;
 }
@@ -8249,10 +8252,10 @@ body.md-skin {
   content: "\f040";
 }
 .btn-delete::before {
-  content: "\f014";
+  content: "\f1f8";
 }
 .btn-remove::before {
-  content: "\f014";
+  content: "\f1f8";
 }
 .btn-list::before {
   content: "\f0cb";

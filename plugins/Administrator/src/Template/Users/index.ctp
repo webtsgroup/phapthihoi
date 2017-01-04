@@ -1,17 +1,12 @@
+<?php
+  use Cake\Routing\Router;
+  $urlEdit = Router::url(['controller' => $this->request->params['controller'], 'action' => 'edit']);
+  $urlDelete = Router::url(['controller' => $this->request->params['controller'], 'action' => 'delete']);
+?>
 <div class="row">
   <div class="col-md-12">
     <div class="ibox float-e-margins">
       <div class="ibox-content">
-        <div class="row">
-          <div class="col-md-12">
-            <?php
-            echo $this->Html->link(
-              __('Create', true),
-              ['controller' => 'users', 'action' => 'add'],
-              ['class' => 'btn btn-primary btn-create']
-            ); ?>
-          </div>
-        </div>
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover dataTables-example" >
           <thead>
@@ -19,8 +14,8 @@
                 <th><?= __('No.') ?></th>
                 <th><?= __('Username') ?></th>
                 <th><?= __('Name') ?></th>
-                <th><?= __('Active') ?></th>
-                <th><?= __('Action') ?></th>
+                <th class="text-center"><?= __('Active') ?></th>
+                <th></th>
             </tr>
           </thead>
             <tbody>
@@ -31,8 +26,8 @@
                   <td><?=$index?></td>
                   <td><?=$item['username']?></td>
                   <td><?=$item['first_name']?></td>
-                  <td><?=$item['username']?></td>
-                  <td><?=$item['username']?></td>
+                  <td class="text-center"><?=$item['active']?></td>
+                  <td class="text-right"><?=$item['id']?></td>
                 </tr>
                 <?php
                 # code...
@@ -47,10 +42,10 @@
   </div>
 </div>
 <?= $this->Html->css([
-  '/plugins/datatables/datatables/media/css/dataTables.bootstrap.min.css'
+  'Administrator.plugins/dataTables/dataTables.min.css'
 ]) ?>
 <?= $this->Html->script([
-  '/plugins/datatables/datatables/media/js/jquery.dataTables.min.js'
+  'Administrator.plugins/dataTables/datatables.min.js'
 ]) ?>
 <script>
 $(document).ready(function(){
@@ -58,19 +53,28 @@ $(document).ready(function(){
     dom: '<"html5buttons"B>lTfgitp',
     columnDefs: [{
       targets: -1,
-      data: null,
-      defaultContent:`<button class="btn btn-xs btn-white btn-update">Edit</button>
-        <button class="btn btn-xs btn-white btn-delete">Delete</button>`
+      //data: null,
+      render: function( data) {
+        return '<div class="btn-group"><a href="<?=$urlEdit?>/' + data + '" class="btn btn-xs btn-white btn-edit s-before-n-p"></a>'
+          + '<button type="button" data-id="' + data + '" data-url="<?=$urlDelete?>/' + data + '" class="btn btn-xs btn-white btn-delete s-before-n-p js-delete-item"></button</div>';
+      }
+    },
+    {
+      targets: -2,
+      //data: null,
+      render: function( data) {
+        var icon = '';
+        if (data == 1) {
+          icon = '<i class="fa fa-check" aria-hidden="true"></i>';
+        }
+        return '<span class="text-primary text-status">' + icon + '</span>';
+      }
     }],
     buttons: [
       {
-        extend: 'print',
-        customize: function (win) {
-          $(win.document.body).addClass('white-bg');
-          $(win.document.body).css('font-size', '10px');
-          $(win.document.body).find('table')
-                  .addClass('compact')
-                  .css('font-size', 'inherit');
+        text: '<?=__('Create', true)?>',
+        action: function ( e, dt, node, config ) {
+          location.href = '<?=$URL?>'
         }
       }
     ]

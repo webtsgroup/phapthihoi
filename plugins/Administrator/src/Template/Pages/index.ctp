@@ -1,22 +1,13 @@
 <?php
   use Cake\Routing\Router;
   $URL = Router::url(['controller' => $this->request->params['controller'], 'action' => 'add', '?' => ['cat' => $cat]]);
-  $urlEdit = Router::url(['controller' => $this->request->params['controller'], 'action' => 'edit'])
+  $urlEdit = Router::url(['controller' => $this->request->params['controller'], 'action' => 'edit']);
+  $urlDelete = Router::url(['controller' => $this->request->params['controller'], 'action' => 'delete']);
 ?>
 <div class="row">
   <div class="col-md-12">
     <div class="ibox float-e-margins">
       <div class="ibox-content">
-        <div class="row">
-          <div class="col-md-12 text-right">
-            <?php
-            echo $this->Html->link(
-              __('Create', true),
-              ['controller' => $this->request->params['controller'], 'action' => 'add', '?' => ['cat' => $cat]],
-              ['class' => 'btn btn-white btn-create']
-            ); ?>
-          </div>
-        </div>
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover dataTables" >
           <thead>
@@ -24,19 +15,19 @@
                 <th><?= __('No.') ?></th>
                 <th><?= __('Title') ?></th>
                 <th><?= __('Alias') ?></th>
-                <th><?= __('Display') ?></th>
-                <th><?= __('Action') ?></th>
+                <th class="text-center"><?= __('Display') ?></th>
+                <th></th>
             </tr>
           </thead>
             <tbody>
               <?php foreach ($results as $index => $item) {
                 $index ++;
                 ?>
-                <tr>
+                <tr data-id="<?=$item['id']?>">
                   <td><?=$index?></td>
                   <td><?=$item['title']?></td>
                   <td><?=$item['alias']?></td>
-                  <td><?=$item['display']?></td>
+                  <td class="text-center"><?=$item['display']?></td>
                   <td class="text-right"><?=$item['id']?></td>
                 </tr>
                 <?php
@@ -52,10 +43,10 @@
   </div>
 </div>
 <?= $this->Html->css([
-  '/plugins/datatables/datatables/media/css/dataTables.bootstrap.min.css'
+  'Administrator.plugins/dataTables/dataTables.min.css'
 ]) ?>
 <?= $this->Html->script([
-  '/plugins/datatables/datatables/media/js/jquery.dataTables.min.js'
+  'Administrator.plugins/dataTables/datatables.min.js'
 ]) ?>
 <script>
 $(document).ready(function(){
@@ -66,10 +57,28 @@ $(document).ready(function(){
       //data: null,
       render: function( data) {
         return '<div class="btn-group"><a href="<?=$urlEdit?>/' + data + '" class="btn btn-xs btn-white btn-edit s-before-n-p"></a>'
-          + '<button class="btn btn-xs btn-white btn-delete"></button</div>';
+          + '<button type="button" data-id="' + data + '" data-url="<?=$urlDelete?>/' + data + '" class="btn btn-xs btn-white btn-delete s-before-n-p js-delete-item"></button</div>';
+      }
+    },
+    {
+      targets: -2,
+      //data: null,
+      render: function( data) {
+        var icon = '';
+        if (data == 1) {
+          icon = '<i class="fa fa-check" aria-hidden="true"></i>';
+        }
+        return '<span class="text-primary text-status">' + icon + '</span>';
       }
     }],
-    buttons: []
+    buttons: [
+      {
+        text: '<?=__('Create', true)?>',
+        action: function ( e, dt, node, config ) {
+          location.href = '<?=$URL?>'
+        }
+      }
+    ]
   });
 });
 </script>

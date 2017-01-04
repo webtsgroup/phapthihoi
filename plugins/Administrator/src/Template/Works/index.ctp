@@ -1,21 +1,12 @@
 <?php
   use Cake\Routing\Router;
-  $URL = Router::url(['controller' => $this->request->params['controller'],'action' => 'edit'])
+  $url = Router::url(['controller' => $this->request->params['controller'],'action' => 'edit']);
+  $urlDelete = Router::url(['controller' => $this->request->params['controller'],'action' => 'delete'])
 ?>
 <div class="row">
   <div class="col-md-12">
     <div class="ibox float-e-margins">
       <div class="ibox-content">
-        <div class="row">
-          <div class="col-md-12 text-right">
-            <?php
-            echo $this->Html->link(
-              __('Create', true),
-              ['controller' => $this->request->params['controller'], 'action' => 'add', $cat],
-              ['class' => 'btn btn-white btn-create']
-            ); ?>
-          </div>
-        </div>
         <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover dataTables" >
           <thead>
@@ -23,8 +14,8 @@
                 <th><?= __('No.', true) ?></th>
                 <th><?= __('Name', true) ?></th>
                 <th><?= __('Address', true) ?></th>
-                <th><?= __('Display', true) ?></th>
-                <th><?= __('Action', true) ?></th>
+                <th class="text-center"><?= __('Display', true) ?></th>
+                <th></th>
             </tr>
           </thead>
             <tbody>
@@ -35,7 +26,7 @@
                   <td><?=$index?></td>
                   <td><?=$item['name']?></td>
                   <td><?=$item['address']?></td>
-                  <td><?=$item['display']?></td>
+                  <td class="text-center"><?=$item['display']?></td>
                   <td class="text-right"><?=$item['id']?></td>
                 </tr>
                 <?php
@@ -64,11 +55,29 @@ $(document).ready(function(){
       targets: -1,
       //data: null,
       render: function( data) {
-        return '<div class="btn-group"><a href="<?=$URL?>/' + data + '" class="btn btn-xs btn-white btn-edit s-before-n-p"></a>'
-          + '<button class="btn btn-xs btn-white btn-delete"></button</div>';
+        return '<div class="btn-group"><a href="<?=$url?>/' + data + '" class="btn btn-xs btn-white btn-edit s-before-n-p"></a>'
+          + '<button type="button" data-id="' + data + '" data-url="<?=$urlDelete?>/' + data + '" class="btn btn-xs btn-white btn-delete s-before-n-p js-delete-item"></button</div>';
+      }
+    },
+    {
+      targets: -2,
+      //data: null,
+      render: function( data) {
+        var icon = '';
+        if (data == 1) {
+          icon = '<i class="fa fa-check" aria-hidden="true"></i>';
+        }
+        return '<span class="text-primary text-status">' + icon + '</span>';
       }
     }],
-    buttons: []
+    buttons: [
+      {
+        text: '<?=__('Create', true)?>',
+        action: function ( e, dt, node, config ) {
+          location.href = '<?=Router::url(['controller' => $this->request->params['controller'], 'action' => 'add', $cat])?>'
+        }
+      }
+    ]
   });
 });
 </script>
