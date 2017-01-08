@@ -33,17 +33,20 @@
                       <?php
                       if (isset($categories[$id])) {
                         foreach($categories[$id] as $cat) { ?>
-                          <li class="dd-item" data-id="2">
+                          <li id="js-row-<?=$cat['id']?>" class="dd-item" data-id="2">
                             <div class="dd-handle">
                               <span class="pull-right">
                                 <div class="btn-group">
                                   <a href="<?=Router::url(['controller' => 'Categories','action' => 'add', '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default">
                                     <i class="fa fa-plus"></i></a>
+                                  <a href="<?=Router::url(['controller' => 'Works','action' => 'index', $cat['id']])?>" class="btn btn-xs btn-default">
+                                    <i class="fa fa-list"></i>
+                                  </a>
                                   <a href="<?=Router::url(['controller' => 'Categories','action' => 'edit', $cat['id'], '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default">
                                     <i class="fa fa-pencil"></i>
                                   </a>
-                                  <a href="<?=Router::url(['controller' => 'Categories','action' => 'delete', $cat['id'], '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default">
-                                    <i class="fa fa-trash"></i></a>
+                                  <button type="button" data-id="<?=$cat['id']?>" data-url="<?=Router::url(['controller' => 'Categories','action' => 'delete', $cat['id'], '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default js-delete-item">
+                                    <i class="fa fa-trash"></i></button>
                                 </div>
                               </span>
                               <i class="fa fa-sort-desc" aria-hidden="true"></i> <?=$cat['name']?>
@@ -52,15 +55,18 @@
                                 <?php
                                 if (isset($cat['children'])) {
                                   foreach($cat['children'] as $sub) { ?>
-                                    <li class="dd-item" data-id="2">
+                                    <li id="js-row-<?=$sub['id']?>" class="dd-item" data-id="2">
                                       <div class="dd-handle">
                                         <span class="pull-right">
                                           <div class="btn-group">
+                                            <a href="<?=Router::url(['controller' => 'Works','action' => 'index', $sub['id']])?>" class="btn btn-xs btn-default">
+                                              <i class="fa fa-list"></i>
+                                            </a>
                                             <a href="<?=Router::url(['controller' => 'Categories','action' => 'edit', $sub['id'], '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default">
                                               <i class="fa fa-pencil"></i>
                                             </a>
-                                            <a href="<?=Router::url(['controller' => 'Categories','action' => 'delete', $sub['id'], '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default">
-                                              <i class="fa fa-trash"></i></a>
+                                            <button type="button" data-id="<?=$sub['id']?>" data-url="<?=Router::url(['controller' => 'Categories','action' => 'delete', $sub['id'], '?' => ['mod' => $mod]])?>" class="btn btn-xs btn-default js-delete-item">
+                                              <i class="fa fa-trash"></i></button>
                                           </div>
                                         </span>
                                         <?=$sub['name']?>

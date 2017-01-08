@@ -116,7 +116,7 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <ul id="filters" class="wow fadeInUp animated" data-wow-delay="0s" style="visibility: visible; animation-delay: 0s; animation-name: fadeInUp;">
-                        <li><a href="#" data-filter="*" class="selected"><?=__('All categories', true)?></a></li>
+                        <li><a href="#" data-filter="*" class="selected"><?=__('All Categories', true)?></a></li>
                         <li><a href="#" data-filter=".design" class=""><?=__('Design', true)?></a></li>
                         <li><a href="#" data-filter=".construction"><?=__('Construction', true)?></a></li>
                     </ul>

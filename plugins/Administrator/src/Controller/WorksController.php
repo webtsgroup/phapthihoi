@@ -58,6 +58,20 @@ class WorksController extends AppController {
 		$this->render('form');
 	}
 
+	public function delete($id) {
+		$this->viewBuilder()->layout('ajax');
+		$results = $this->defaultAjaxResult;
+		$entity = $this->Works->get($id);
+		$result = $this->Works->delete($entity, ['atomic' => false]);
+		if ($result) {
+			$results['success'] = true;
+			$results['data'] = $entity;
+			$results['message'] = __('Deleted an item', true);
+		}
+		echo json_encode($results);
+		exit;
+	}
+
 	private function _save($data, $id = null) {
 		$result = $this->defaultAjaxResult;
 		$error = false;
@@ -76,7 +90,7 @@ class WorksController extends AppController {
 			$id = $saveData->id;
 			if(is_numeric($id))	{
 				$saveData['id'] = $id;
-				if($isCreate) {
+				if($isCreate && $data['galleries']) {
 					$images = explode('|', $data['galleries']);
 					$Galleries = $this->loadModel('Galleries');
 					$Galleries->updateAll(

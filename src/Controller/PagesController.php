@@ -17,6 +17,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\I18n\I18n;
 
 /**
  * Static content controller
@@ -27,6 +28,10 @@ use Cake\View\Exception\MissingTemplateException;
  */
 class PagesController extends AppController
 {
+  public function initialize() {
+    I18n::locale('en_US');
+    I18n::defaultLocale();
+  }
 
     /**
      * Displays a view

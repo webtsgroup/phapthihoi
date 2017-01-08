@@ -61,26 +61,15 @@ class PagesController extends AppController {
 		$this->render('form');
 	}
 
-	public function delete() {
-		$this->layout='ajax';
-		$data = isset($this->data) ? $this->data : array();
+	public function delete($id) {
+		$this->viewBuilder()->layout('ajax');
 		$results = $this->defaultAjaxResult;
-		if($data['id'])
-		{
-			$check = $this->Page->find('count', array(
-				'conditions' => array(
-					'Page.id' => $data['id']
-				)
-			));
-			if($check)
-			{
-				if($this->Page->delete($data['id']))
-				{
-					$results['success'] = true;
-					$results['data'] = $data;
-					$results['message'] = 'Deleted';
-				}
-			}
+		$entity = $this->Pages->get($id);
+		$result = $this->Pages->delete($entity, ['atomic' => false]);
+		if ($result) {
+			$results['success'] = true;
+			$results['data'] = $entity;
+			$results['message'] = __('Deleted an item', true);
 		}
 		echo json_encode($results);
 		exit;
@@ -91,7 +80,7 @@ class PagesController extends AppController {
 		if(!empty($data))	{
 			$error = false ;
 			if($error) {
-				$result['message'] = 'Data not save';
+				$result['message'] = __('Data not saved', true);
 			} else {
 				if(isset($data['id']) && !is_numeric($data['id'])) {
 					unset($data['id']);
@@ -104,11 +93,11 @@ class PagesController extends AppController {
 					$result = array(
 						'success' => true,
 						'data' => $saveData,
-						'message' => __('Data saved'),
+						'message' => __('Data saved', true),
 						'redirect' => Router::url(['controller' => 'pages', 'action' => 'index'])
 					);
 				}	else {
-					$result['message'] = __('Data not save');
+					$result['message'] = __('Data not saved', true);
 				}
 			}
 		}

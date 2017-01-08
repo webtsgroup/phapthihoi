@@ -1,5 +1,7 @@
 <?php
   use Cake\Routing\Router;
+  use Cake\I18n\I18n;
+  I18n::locale('en_US');
 ?>
 <nav>
   <ul id="mainmenu" class="line-separator">
@@ -15,13 +17,13 @@
           //for parent category (level 1)
           foreach ($workCategories[$module] as $i => $cat) {
             ?>
-            <li><a href="<?=Router::url(['controller' => 'Works','action' => 'index', $cat['id']])?>"><?=$cat['name']?></a><span></span>
+            <li><a href="<?=Router::url(['controller' => 'Works','action' => 'index', $cat['id'], $cat['name']])?>"><?=$cat['name']?></a><span></span>
               <ul>
                 <?php
                 //for children category (level 2)
                 foreach ($cat['children'] as $j => $child) {
                   ?>
-                  <li><a href="<?=Router::url(['controller' => 'Works','action' => 'index', $child['id']])?>"><?=$child['name']?></a></li>
+                  <li><a href="<?=Router::url(['controller' => 'Works','action' => 'index', $child['id'], $child['name']])?>"><?=$child['name']?></a></li>
                   <?php
                 }
                 ?>

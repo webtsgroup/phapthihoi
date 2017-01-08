@@ -1,0 +1,107 @@
+msgid "About us"
+msgstr "Giới thiệu"
+
+msgid "Add picture..."
+msgstr "Thêm hình ảnh"
+
+msgid "Address"
+msgstr "Địa chỉ"
+
+msgid "Administrator"
+msgstr "Quản trị viên"
+
+msgid "Alias"
+msgstr "Từ khóa"
+
+msgid "All"
+msgstr "Tất cả"
+
+msgid "All Categories"
+msgstr "Tất cả danh mục"
+
+msgid "Categories"
+msgstr "Danh mục"
+
+msgid "Category"
+msgstr "Danh mục"
+
+msgid "Construction"
+msgstr "Thi công nội thất gỗ"
+
+msgid "Contact"
+msgstr "Liên hệ"
+
+msgid "Contact Info"
+msgstr "Thông tin liên hệ"
+
+msgid "Contact us"
+msgstr "Liên hệ"
+
+msgid "Content"
+msgstr "Nội dung"
+
+msgid "Create"
+msgstr "Tạo mới"
+
+msgid "Create new Page"
+msgstr "Tạo trang mới"
+
+msgid "Description"
+msgstr "Mô tả"
+
+msgid "Design"
+msgstr "Thiết kế kiến trúc"
+
+msgid "Display"
+msgstr "Hiển thị"
+
+msgid "Follow Us"
+msgstr "Kết nối với chúng tôi"
+
+msgid "Factory"
+msgstr "Xưởng sản xuất"
+
+msgid "Highlight"
+msgstr "Nổi bật"
+
+msgid "ImageImage preview"
+msgstr "Hình ảnh"
+
+msgid "Keyword"
+msgstr "Từ khóa"
+
+msgid "Name"
+msgstr "Tên"
+
+msgid "Owner"
+msgstr "Chủ đầu tư"
+
+msgid "Read More"
+msgstr "Xem thêm"
+
+msgid "Reset"
+msgstr "Làm lại"
+
+msgid "Showroom"
+msgstr "Phòng trưng bày"
+
+msgid "Static page"
+msgstr "Trang nội dung"
+
+msgid "Submit"
+msgstr "Lưu lại"
+
+msgid "System configuration"
+msgstr "Cấu hình"
+
+msgid "Title"
+msgstr "Tiêu đề"
+
+msgid "Works"
+msgstr "Dự án"
+
+msgid "Works Information"
+msgstr "Thông tin chi tiết"
+
+msgid "Work Information"
+msgstr "Thông tin chi tiết"

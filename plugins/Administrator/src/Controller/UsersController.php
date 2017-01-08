@@ -69,17 +69,30 @@ class UsersController extends AppController {
 		$result = array();
 		$this->set(compact('result','action'));
 	}
+
 	public function edit($id) {
-		$result = $this->Users->find('first',array(
-			'conditions' => array('id' => $id)
-		));
+		$result = $this->Users->get($id);
 		$result = $result['User'];
 		$action = 'edit';
 		$this->set(compact('result','action','onchange','id'));
 		$this->render('add');
 	}
-	public function changePass($id)
-	{
+
+	public function delete($id) {
+		$this->viewBuilder()->layout('ajax');
+		$results = $this->defaultAjaxResult;
+		$entity = $this->Users->get($id);
+		$result = $this->Users->delete($entity, ['atomic' => false]);
+		if ($result) {
+			$results['success'] = true;
+			$results['data'] = $entity;
+			$results['message'] = __('Deleted an item', true);
+		}
+		echo json_encode($results);
+		exit;
+	}
+
+	public function changePass($id) {
 		$result = array(
 				'success' => false,
 				'data' => array(),
@@ -126,6 +139,7 @@ class UsersController extends AppController {
 		$check = $this->Users->find('all')->where($where)->count();
 		return $check;
 	}
+
 	public function login() {
 		if(!empty($this->request->data) && $this->request->is('ajax'))	{
 			$result = $this->defaultAjaxResult;
@@ -153,6 +167,7 @@ class UsersController extends AppController {
 			$this->render('/Layout/login');
 		}
 	}
+
 	function logout() {
 		//$this->Session->destroy();
 		$this->Auth->logout();

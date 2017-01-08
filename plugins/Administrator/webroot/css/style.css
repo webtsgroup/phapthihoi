@@ -8272,6 +8272,7 @@ body.md-skin {
 }
 #loading-content {
   position: absolute;
-  top: 50%;
+  text-align: center;
+  left: 50%;
   bottom: 50%;
 }

@@ -72,6 +72,18 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
+
+    /**
+     * URL friendly for SEO
+     */
+    $routes->connect(
+       '/danh-muc/:id-:slug',
+       ['controller' => 'Works', 'action' => 'index'],
+       [
+         'pass' => ['id', 'slug'],
+         'id' => '[0-9][a-z]+'
+       ]
+    );
     $routes->fallbacks('DashedRoute');
 
 

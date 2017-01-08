@@ -18,6 +18,7 @@ use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Routing\Router;
 use Cake\Utility\Hash;
+use Cake\I18n\I18n;
 
 /**
  * Application Controller
@@ -42,12 +43,13 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
+        I18n::locale('en_US');
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
     }
 
     function beforeFilter(Event $event) {
+      I18n::locale('en_US');
       $urlSetting = [
         'about' => [
           'text' => __('About us'),

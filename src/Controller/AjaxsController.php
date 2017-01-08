@@ -108,7 +108,7 @@ class AjaxsController extends AppController {
 			$_result = $Galleries->delete($entity, ['atomic' => false]);
 			if($_result) {
 				$results['success'] = true;
-				$results['message'] = 'Deleted';
+				$results['message'] = __('Deleted', true);
 			}
 		}
 		echo json_encode($results);

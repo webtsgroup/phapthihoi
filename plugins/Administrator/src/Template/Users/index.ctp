@@ -1,5 +1,6 @@
 <?php
   use Cake\Routing\Router;
+  $urlAdd = Router::url(['controller' => $this->request->params['controller'], 'action' => 'add']);
   $urlEdit = Router::url(['controller' => $this->request->params['controller'], 'action' => 'edit']);
   $urlDelete = Router::url(['controller' => $this->request->params['controller'], 'action' => 'delete']);
 ?>
@@ -8,7 +9,7 @@
     <div class="ibox float-e-margins">
       <div class="ibox-content">
         <div class="table-responsive">
-          <table class="table table-striped table-bordered table-hover dataTables-example" >
+          <table class="table table-striped table-bordered table-hover dataTables" >
           <thead>
             <tr>
                 <th><?= __('No.') ?></th>
@@ -22,7 +23,7 @@
               <?php foreach ($results as $index => $item) {
                 $index ++;
                 ?>
-                <tr>
+                <tr id="js-row-<?=$item['id']?>">
                   <td><?=$index?></td>
                   <td><?=$item['username']?></td>
                   <td><?=$item['first_name']?></td>
@@ -49,7 +50,7 @@
 ]) ?>
 <script>
 $(document).ready(function(){
-  var table = $('.dataTables-example').DataTable({
+  var table = $('.dataTables').DataTable({
     dom: '<"html5buttons"B>lTfgitp',
     columnDefs: [{
       targets: -1,
@@ -74,7 +75,7 @@ $(document).ready(function(){
       {
         text: '<?=__('Create', true)?>',
         action: function ( e, dt, node, config ) {
-          location.href = '<?=$URL?>'
+          location.href = '<?=$urlAdd?>';
         }
       }
     ]

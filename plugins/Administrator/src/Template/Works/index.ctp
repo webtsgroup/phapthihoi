@@ -22,7 +22,7 @@
               <?php foreach ($results as $index => $item) {
                 $index ++;
                 ?>
-                <tr>
+                <tr id="js-row-<?=$item['id']?>">
                   <td><?=$index?></td>
                   <td><?=$item['name']?></td>
                   <td><?=$item['address']?></td>

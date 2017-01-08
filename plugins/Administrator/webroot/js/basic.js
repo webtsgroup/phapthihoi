@@ -24,7 +24,7 @@ function getFormData(form) {
     //end
     switch (_type) {
       case 'checkbox':
-        if(_key.indexOf("[]")) { //multiple checkbox
+        if(_key.indexOf("[]") !== -1) { //multiple checkbox
           var _getValue = [];
           $('input[name="' + _key + '"]').each(function() {
             if($(this).prop('checked')) {
@@ -88,6 +88,7 @@ function setModalAttr(title,html,btn) {
 		$(btn).insertAfter('#btnCancelModal');
 	}
 }
+
 function showLoading(show) {
   if (show === true) {
     $('#loading').show();
@@ -95,6 +96,7 @@ function showLoading(show) {
     $('#loading').hide();
   }
 }
+
 function showNotify(text, hide) {
 	// $("#showResult").show();
 	// $("#showResult").html(text);
@@ -102,9 +104,11 @@ function showNotify(text, hide) {
 	// if(hide) {
 	// 	setTimeout(function(){$('#myModal').modal('hide')},1000);
 	// }
-	toastr.info('Are you the 6 fingered man?');
+	toastr.remove();
+	toastr.info(text);
   //toastr.remove()
 }
+
 function alertMsg(text,cls) {
 	$("#js-show-result").attr('class','');
 	$("#js-show-result").addClass(cls);
@@ -157,25 +161,25 @@ function login(form, url) {
 function logout() {
   var data="logout=1";
   $.ajax({
-			type: "POST",
-			data: data,
-			cache: false,
-			success: function (html) {
-			showNotify(html);
-			setTimeout(function() {
-        location.reload(true);
-      }, 1000);
-			}
+		type: "POST",
+		data: data,
+		cache: false,
+		success: function (html) {
+		showNotify(html);
+		setTimeout(function() {
+      location.reload(true);
+    }, 1000);
+		}
 	});
 }
 
 /*---------AJAX PROCESS GENERAL-------------*/
-function $ajax(url, data, sync) {
+function $ajax(url, data, sync, type) {
   sync = typeof sync == 'undefined' ? true : sync;
   var success = false ;
   $.ajax({
     url : url,
-    type : "POST",
+    type : typeof type === 'undefined' ? 'POST' : type,
     data: data,
     //data : '',
     dataType : 'json',
@@ -189,7 +193,7 @@ function $ajax(url, data, sync) {
     	var _redirect = typeof (data.redirect) !== 'undefined' ? data.redirect : false;
     	var _msg = _redirect ? data.message + '<br /> Redirect to...' : data.message;
     	if(data.success) cls = 'text-success';
-    	success = data.success ;
+    	success = true ;
       showLoading(false);
     	showNotify(_msg, true);
     	if(_redirect) {
@@ -270,3 +274,16 @@ function checkOne(name, parent, child) {
 	}
 	return 0;
 }
+
+$(document).on('click', '.js-delete-item', function() {
+	var id = $(this).attr('data-id');
+	var url = $(this).attr('data-url');
+  var r = confirm("Are you sure ???");
+  if (r) {
+    var result = $ajax(url, {}, false, 'DELETE');
+    if (result) {
+      $('.dataTables tr[data-id=' + id + ']').remove();
+      $('#js-row-' + id).remove();
+    }
+  }
+});

@@ -81,7 +81,7 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
 
         <!-- header begin -->
         <header class="transparent clone smaller">
-            
+
             <div class="container">
               <div class="row">
                 <div class="col-md-12">
@@ -90,7 +90,9 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
                     <!-- <a href="/">
                       <img class="logo" src="./Archi - Responsive Interior Design Template home_files/logo.png" alt="">
                     </a> -->
-                    <h1 class="m-t"><span class="id-color">A</span>SIDEC</h1>
+                    <a href="/">
+                      <h1 class="m-t" style="margin-top: 16px"><span class="id-color">A</span>SIDEC</h1>
+                    </a>
                   </div>
                   <!-- logo close -->
 

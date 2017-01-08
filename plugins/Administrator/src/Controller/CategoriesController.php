@@ -70,6 +70,20 @@ class CategoriesController extends AppController {
 		$this->set(compact('result', 'action', 'mod', 'modules', 'parents'));
 	}
 
+	public function delete($id) {
+		$this->viewBuilder()->layout('ajax');
+		$results = $this->defaultAjaxResult;
+		$entity = $this->Categories->get($id);
+		$result = $this->Categories->delete($entity, ['atomic' => false]);
+		if ($result) {
+			$results['success'] = true;
+			$results['data'] = $entity;
+			$results['message'] = __('Deleted an item', true);
+		}
+		echo json_encode($results);
+		exit;
+	}
+
 	private function _save($data, $id = null) {
 		$result = $this->defaultAjaxResult;
 		$error = false;
