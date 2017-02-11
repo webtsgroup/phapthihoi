@@ -50,7 +50,7 @@
         foreach ($detail['audio'] as $ind => $audio) {
           ?>
           <div class="col-xs-12">
-            <div class="item r" data-id="item-<?=$audio['id']?>" data-src="<?=$audio['url']?>">
+            <div class="js-obj-mp3 item r" data-id="item-<?=$audio['id']?>" data-src="<?=$audio['url']?>">
               <div class="item-media item-media-4by3">
                 <a href="<?=Router::url(['controller' => 'Albums', 'action' => 'detail', $detail['id']])?>" class="item-media-content" style="background-image: url('/img/b0.jpg');"></a>
                 <div class="item-overlay center">

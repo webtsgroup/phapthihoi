@@ -17,7 +17,7 @@
           <?php
           foreach ($latest as $ind => $item) {
             ?>
-            <div class="item r" data-id="item-117" data-src="<?=$item['audio'][0]['url']?>">
+            <div class="js-obj-mp3 item r" data-id="item-117" data-src="<?=$item['audio'][0]['url']?>">
               <div class="item-media accent item-media-4by3">
                 <a href="<?=Router::url(['controller' => 'Albums','action' => 'detail', $item['id']])?>" class="item-media-content" style="background-image: url('<?=$item['img']?>');"></a>
                 <div class="item-overlay center">
@@ -131,8 +131,6 @@
 								<div class="item-author text-sm text-ellipsis ">
 									<a href="artist.detail.html" class="text-muted">Jeremy Scott</a>
 								</div>
-
-
 							</div>
 						</div>
 					</div>
