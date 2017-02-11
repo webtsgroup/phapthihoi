@@ -30,13 +30,13 @@
                 </a>
             </li>
             <li>
-              <a href="<?= Router::url(['controller' => 'works']); ?>">
+              <a href="<?= Router::url(['controller' => 'audio']); ?>">
                 <i class="fa fa-building"></i>
-                <span class="nav-label"><?= __('Works', true) ?></span>
+                <span class="nav-label"><?= __('Audio management', true) ?></span>
               </a>
             </li>
             <li>
-              <a href="<?= Router::url(['controller' => 'categories', 'action' => 'index', '?' => ['mod' => 'work']]); ?>">
+              <a href="<?= Router::url(['controller' => 'categories', 'action' => 'index', '?' => ['mod' => 'audio']]); ?>">
                 <i class="fa fa-list-ol"></i>
                 <span class="nav-label"><?= __('Categories', true) ?></span>
               </a>

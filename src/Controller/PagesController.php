@@ -63,40 +63,15 @@ class PagesController extends AppController
            * CUSTOME Pages
            */
           if ($page === 'home') {
-            $this->loadModel('Works');
-            //record for design
-            $cats1 = $this->Categories
-            ->find('list')
-            ->where(['Categories.display' => 1, 'Modules.type' => 'work', 'Modules.alias' => 'design'])
-            ->contain(['Modules'])->toArray();
-            $designResults = $this->Works->find('all')
-            ->contain(['Avatar'])
-            ->where(['display' => 1, 'category_id IN'=> array_keys($cats1)])
-            ->limit(4)->toArray();
-
-            //record for work
-            $cats2 = $this->Categories
-            ->find('list')
-            ->where(['Categories.display' => 1, 'Modules.type' => 'work', 'Modules.alias' => 'construction'])
-            ->contain(['Modules'])->toArray();
-            $constructionResults = $this->Works->find('all')
-            ->contain(['Avatar'])
-            ->where(['display' => 1, 'category_id IN'=> array_keys($cats2)])
-            ->limit(4)->toArray();
-
-            //get activity summary
-            $activities = $this->Pages->find('all')
-            ->where(['display' => 1, 'alias LIKE'=> 'field-%'])
-            ->limit(3)->toArray();
-            $this->set(compact('designResults', 'constructionResults', 'activities'));
+            $this->loadModel('AudioAlbums');
+            $latest = $this->AudioAlbums->find('all')
+                                     ->limit(5)
+                                     ->order(['AudioAlbums.id' => 'DESC'])
+                                     ->contain(['Audio', 'Singers'])
+                                     ->toArray();
+            $this->set(compact('latest'));
           } else if ($page === 'about') {
-            $this->loadModel('Pages');
-            //record for work
-            $query = $this->Pages
-            ->find()
-            ->where(['display' => 1, 'alias' => 'about-us']);
-            $result = $query->first();
-            $this->set(compact('result'));
+            //
           } else if ($page === 'contact') {
 
           }

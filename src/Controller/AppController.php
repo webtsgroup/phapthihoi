@@ -66,26 +66,7 @@ class AppController extends Controller
     }
 
     private function _getMetadata() {
-      $this->loadModel('Modules');
-      $workModulesQuery = $this->Modules->find('all')->where([
-        'type' => 'work',
-        'active' => 1
-      ])->toArray();
-      $workModules = Hash::combine($workModulesQuery, '{n}.alias', '{n}');
-      $this->loadModel('Categories');
-      $workQuery = $this->Categories->find('threaded')
-      ->where(['display' => 1])
-      ->toArray();
-      $workCategories = Hash::combine($workQuery, '{n}.id', '{n}', '{n}.module_id');
-      $galleryPath = '/uploads/galleries/';
-      $galleryPathThumb = '/uploads/galleries/thumbnail/';
-      $this->loadModel('Pages');
-      //record for work
-      $query = $this->Pages
-      ->find()
-      ->where(['display' => 1, 'alias' => 'activity-summary']);
-      $activity = $query->first();
-      $this->set(compact('activity', 'workCategories', 'workModules', 'galleryPath', 'galleryPathThumb'));
+      //
     }
 
     /**
