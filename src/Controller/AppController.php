@@ -66,7 +66,7 @@ class AppController extends Controller
     }
 
     private function _getMetadata() {
-      //
+      //todo
     }
 
     /**
