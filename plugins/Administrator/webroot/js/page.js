@@ -39,11 +39,11 @@ function audio(url) {
 
 function album(url) {
 	updateDataFromEditor();
-	var formData = getFormData('formAudio');
+	var formData = getFormData('formAlbum');
 	if ($.isEmptyObject(formData.error)) {
 		$ajax(url, formData.data);
 	} else {
-		errorHandle('formAudio', formData.error)
+		errorHandle('formAlbum', formData.error)
 	}
 }
 

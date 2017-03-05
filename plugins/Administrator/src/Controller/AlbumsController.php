@@ -58,9 +58,7 @@ class AlbumsController extends AppController {
 		if(!empty($this->request->data) && $this->request->is('ajax')) {
 			$this->_save($this->request->data, $id);
 		}
-		$result = $this->Works->get($id, [
-    	'contain' => ['Galleries']
-		]);
+		$result = $this->AudioAlbums->get($id);
 		$result['galleries_str'] = '';
 		$this->_getMetadata();
 		$this->set(compact('result'));
@@ -70,8 +68,8 @@ class AlbumsController extends AppController {
 	public function delete($id) {
 		$this->viewBuilder()->layout('ajax');
 		$results = $this->defaultAjaxResult;
-		$entity = $this->Works->get($id);
-		$result = $this->Works->delete($entity, ['atomic' => false]);
+		$entity = $this->AudioAlbums->get($id);
+		$result = $this->AudioAlbums->delete($entity, ['atomic' => false]);
 		if ($result) {
 			$results['success'] = true;
 			$results['data'] = $entity;
@@ -94,24 +92,16 @@ class AlbumsController extends AppController {
 			} else if (!isset($data['id'])) {
 				$isCreate = true;
 			}
-			$saveData = $this->Works->newEntity($data);
-			$this->Works->save($saveData);
+			$saveData = $this->AudioAlbums->newEntity($data);
+			$this->AudioAlbums->save($saveData);
 			$id = $saveData->id;
 			if(is_numeric($id))	{
 				$saveData['id'] = $id;
-				if($isCreate && $data['galleries']) {
-					$images = explode('|', $data['galleries']);
-					$Galleries = $this->loadModel('Galleries');
-					$Galleries->updateAll(
-		        ['reference_id' => $id],
-		        ['id IN' => $images]
-					);
-				}
 				$result = array(
 					'success' => true,
 					'data' => $saveData,
 					'message' => __('Data saved'),
-					'redirect' => Router::url(['controller' => 'works', 'action' => 'index', $saveData['category_id']])
+					'redirect' => Router::url(['controller' => 'albums', 'action' => 'index'])
 				);
 			}	else {
 				$result['message'] = __('Data not save');

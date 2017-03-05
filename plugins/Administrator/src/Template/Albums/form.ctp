@@ -121,40 +121,6 @@
                   ?>
                 </div>
               </div>
-              <div class="form-group"><label class="col-sm-2 control-label required"><?=__('Thể loại', true);?></label>
-                <div class="col-sm-5">
-                  <select class="form-control" data-required="1" title="<?=__('Select Parent', true)?>" name="cat_id" id="category_id">
-                    <option value="">
-                      <?=__('Select one', true)?>
-                    </option>
-                    <?php
-                    foreach($categories as $ind => $parents) {
-                      $childrens = isset($parents['children']) ? $parents['children'] : [];
-                      $selectedParent = '';
-                      if (isset($result['cat_id']) && $result['cat_id'] == $parents['id']) {
-                        $selectedParent = 'selected';
-                      }
-                      ?>
-                      <option <?=$selectedParent?> value="<?=$parents['id']?>">
-                        <?=$parents['name']?>
-                      </option>
-                      <?php
-                      foreach($childrens as $_ind => $child) {
-                        $selected = '';
-                        if (isset($result['cat_id']) && $result['cat_id'] == $child['id']) {
-                          $selected = 'selected';
-                        }
-                        ?>
-                        <option <?=$selected?> value="<?=$child['id']?>">
-                          -- <?=$child['name']?>
-                        </option>
-                        <?php
-                      }
-                    }
-                    ?>
-                  </select>
-                </div>
-              </div>
               <div class="form-group"><label class="col-sm-2 control-label"><?=__('Content');?></label>
                 <div class="col-sm-10">
                   <?php
