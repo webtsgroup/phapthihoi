@@ -32,7 +32,13 @@
             <li>
               <a href="<?= Router::url(['controller' => 'audio']); ?>">
                 <i class="fa fa-building"></i>
-                <span class="nav-label"><?= __('Audio management', true) ?></span>
+                <span class="nav-label"><?= __('Quản lí Audio', true) ?></span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= Router::url(['controller' => 'albums']); ?>">
+                <i class="fa fa-building"></i>
+                <span class="nav-label"><?= __('Quản lí Album', true) ?></span>
               </a>
             </li>
             <li>

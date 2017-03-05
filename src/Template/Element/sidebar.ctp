@@ -32,7 +32,7 @@
               <span class="text-xs text-muted">Main</span>
             </li> -->
             <li>
-              <a href="/als">
+              <a href="<?=Router::url(['controller' => 'Albums','action' => 'index'])?>">
                 <span class="nav-icon">
                   <i class="material-icons">
                     play_circle_outline
@@ -45,7 +45,7 @@
               <a href="/n">
                 <span class="nav-icon">
                   <i class="material-icons">
-                    sort
+                    cloud_download
                   </i>
                 </span>
                 <span class="nav-text"><?=__('Tải về', true)?></span>

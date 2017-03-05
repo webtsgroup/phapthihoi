@@ -15,27 +15,27 @@ use Cake\Utility\Hash;
  * @package       app.Controller
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
-class AudioController extends AppController {
+class AlbumsController extends AppController {
 
 	public function initialize() {
 		parent::initialize();
-		$this->loadModel('Audio');
+		$this->loadModel('AudioAlbums');
 	}
 
 	public function index($cat = null) {
 		if ($cat === null) {
-			$results = $this->Audio->find('all')
-														 ->limit(10)
-														 ->order(['Audio.id' => 'DESC'])
-														 ->contain(['Singers'])
-														 ->toArray();
+			$results = $this->AudioAlbums->find('all')
+			                             ->limit(10)
+																	 ->order(['AudioAlbums.id' => 'DESC'])
+																	 ->contain(['Singers'])
+																	 ->toArray();
 		} else {
-			$results = $this->Audio->find('all')
-			                       ->where(['cat_id'=> $cat])
-														 ->limit(10)
-														 ->order(['Audio.id' => 'DESC'])
-														 ->contain(['Singers'])
-														 ->toArray();
+			$results = $this->AudioAlbums->find('all')
+			                             ->where(['category_id'=> $cat])
+																	 ->limit(10)
+																	 ->order(['AudioAlbums.id' => 'DESC'])
+																	 ->contain(['Singers'])
+																	 ->toArray();
 		}
 		$this->set(compact('results', 'cat'));
 	}
@@ -58,7 +58,10 @@ class AudioController extends AppController {
 		if(!empty($this->request->data) && $this->request->is('ajax')) {
 			$this->_save($this->request->data, $id);
 		}
-		$result = $this->Audio->get($id);
+		$result = $this->Works->get($id, [
+    	'contain' => ['Galleries']
+		]);
+		$result['galleries_str'] = '';
 		$this->_getMetadata();
 		$this->set(compact('result'));
 		$this->render('form');
@@ -91,16 +94,24 @@ class AudioController extends AppController {
 			} else if (!isset($data['id'])) {
 				$isCreate = true;
 			}
-			$saveData = $this->Audio->newEntity($data);
-			$this->Audio->save($saveData);
+			$saveData = $this->Works->newEntity($data);
+			$this->Works->save($saveData);
 			$id = $saveData->id;
 			if(is_numeric($id))	{
 				$saveData['id'] = $id;
+				if($isCreate && $data['galleries']) {
+					$images = explode('|', $data['galleries']);
+					$Galleries = $this->loadModel('Galleries');
+					$Galleries->updateAll(
+		        ['reference_id' => $id],
+		        ['id IN' => $images]
+					);
+				}
 				$result = array(
 					'success' => true,
 					'data' => $saveData,
 					'message' => __('Data saved'),
-					'redirect' => Router::url(['controller' => 'audio', 'action' => 'index', $saveData['cat_id']])
+					'redirect' => Router::url(['controller' => 'works', 'action' => 'index', $saveData['category_id']])
 				);
 			}	else {
 				$result['message'] = __('Data not save');
@@ -120,13 +131,7 @@ class AudioController extends AppController {
 											 ->toArray();
 		$singers = Hash::combine($singers, '{n}.id', '{n}.name');
 
-		$AudioAlbums = $this->loadModel('AudioAlbums');
-		$albums = $AudioAlbums->find('all')
-		                      ->order(['id' => 'DESC'])
-		                      ->toArray();
-		$albums = Hash::combine($albums, '{n}.id', '{n}.name');
-
-		$this->set(compact('categories', 'singers', 'albums'));
+		$this->set(compact('categories', 'singers'));
 	}
 
 }

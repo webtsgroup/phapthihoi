@@ -27,13 +27,23 @@ function category(url) {
 	}
 }
 
-function work(url) {
+function audio(url) {
 	updateDataFromEditor();
-	var formData = getFormData('formWork');
+	var formData = getFormData('formAudio');
 	if ($.isEmptyObject(formData.error)) {
 		$ajax(url, formData.data);
 	} else {
-		errorHandle('formWork', formData.error)
+		errorHandle('formAudio', formData.error)
+	}
+}
+
+function album(url) {
+	updateDataFromEditor();
+	var formData = getFormData('formAudio');
+	if ($.isEmptyObject(formData.error)) {
+		$ajax(url, formData.data);
+	} else {
+		errorHandle('formAudio', formData.error)
 	}
 }
 

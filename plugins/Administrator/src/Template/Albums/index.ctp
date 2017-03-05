@@ -24,7 +24,7 @@
                 ?>
                 <tr id="js-row-<?=$item['id']?>">
                   <td><?=$index?></td>
-                  <td><?=$item['title']?></td>
+                  <td><?=$item['name']?></td>
                   <td><?=$item['singer']['name']?></td>
                   <td class="text-center">1</td>
                   <td class="text-right"><?=$item['id']?></td>
@@ -51,6 +51,7 @@
 $(document).ready(function(){
   var table = $('.dataTables').DataTable({
     dom: '<"html5buttons"B>lTfgitp',
+    total: 57,
     columnDefs: [{
       targets: -1,
       //data: null,

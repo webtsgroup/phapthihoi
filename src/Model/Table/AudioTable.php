@@ -8,9 +8,13 @@ class AudioTable extends Table
 {
   public function initialize(array $config)
   {
-    $this->belongTo('AudioAlbums', [
+    $this->belongsTo('AudioAlbums', [
       'className' => 'AudioAlbums',
       'foreignKey' => 'album_id'
+    ]);
+    $this->belongsTo('Singers', [
+      'className' => 'Singers',
+      'foreignKey' => 'singer_id'
     ]);
   }
 }

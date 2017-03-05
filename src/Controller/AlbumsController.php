@@ -28,15 +28,20 @@ class AlbumsController extends AppController {
 		if (is_numeric($cat)) {
 			$path = $this->Categories->find('list')->where(['parent_id' => $cat])->toArray();
 			$ids = array_merge([$cat], array_keys($path));
-			$results = $this->Works->find('all')->contain(['Avatar'])->where(['display' => 1, 'category_id IN'=> $ids])->toArray();
+			$results = $this->AudioAlbums->find('all')
+			                       ->contain(['Avatar'])
+														 ->where(['display' => 1, 'category_id IN'=> $ids])
+														 ->toArray();
 		} else {
-			$catsByModule = $this->Categories
-			->find('list')
-			->where(['Categories.display' => 1, 'Modules.type' => 'work', 'Modules.alias' => $cat])
-			->contain(['Modules'])->toArray();
-			$results = $this->Works->find('all')
-			->where(['display' => 1, 'category_id IN'=> array_keys($catsByModule)])
-			->contain(['Avatar'])->toArray();
+			$catsByModule = $this->Categories->find('list')
+																			 ->where(['Categories.display' => 1, 'Modules.type' => 'audio', 'Modules.alias' => $cat])
+																			 ->contain(['Modules'])->toArray();
+			$results = $this->AudioAlbums->find('all')
+			                       //->where(['display' => 1, 'category_id IN'=> array_keys($catsByModule)])
+														 ->order(['AudioAlbums.id' => 'DESC'])
+														 ->contain(['Audio', 'Singers'])
+														 ->limit(12)
+														 ->toArray();
 		}
 		$this->set(compact('results', 'cat', 'path'));
 	}

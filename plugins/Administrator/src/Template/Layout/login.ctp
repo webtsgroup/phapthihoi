@@ -6,7 +6,7 @@
     <div class="middle-box text-center loginscreen animated fadeInDown">
         <div>
             <div>
-              <h1 class="logo-name">CMS</h1>
+              <h1 class="logo-name">PTH</h1>
             </div>
             <h3>Welcome to Administrator</h3>
             <form class="form-login" id="loginForm" >
